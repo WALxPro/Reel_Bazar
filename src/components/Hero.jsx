@@ -28,7 +28,7 @@ export default function Hero() {
     >
       <video
         ref={videoRef}
-        src="/public/Home.mp4"
+        src="/Home.mp4"
         className="
           absolute
           inset-0
