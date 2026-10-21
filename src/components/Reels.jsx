@@ -1,38 +1,19 @@
+
 import BrandsTicker from "./Brandsticker";
 import TagsTicker from "./Tagsticker";
 import TiltedVideoCard from "./TiltedVideoCard";
 
 const videos = [
   {
-    videoUrl: "https://res.cloudinary.com/m4hnnyml/video/upload/v1791369394/client_review_2.mp4",
-    transform: "rotate(-5deg) skewY(8deg)",
-    borderRadius: "26px 26px 0 0",
-    videoBorderRadius: "20px 20px 0 0",
-    boxShadow:
-      "0px 24px 52px 0px rgba(13,13,13,0.2), 0px -0.72px 1.01px -1.25px rgba(0,0,0,0.07), 0px -2.75px 3.84px -2.5px rgba(0,0,0,0.06), 0px -12px 16.8px -3.75px rgba(0,0,0,0.03)",
-    buttonShadow: "0px 8px 32px 0px rgba(13,13,13,0.3)",
+    videoUrl:
+      "https://res.cloudinary.com/daterfw1n/video/upload/v1792626435/Test_cmewvw.mp4",
+    transform: "none",
     autoPlay: true,
   },
   {
     videoUrl:
       "https://res.cloudinary.com/m4hnnyml/video/upload/v1791369394/client_review_2.mp4",
-    transform: "rotate(0deg) skewY(0deg)",
-    borderRadius: "26px 26px 0 0",
-    videoBorderRadius: "20px 20px 0 0",
-    boxShadow:
-      "0px 24px 52px 0px rgba(13,13,13,0.2), 0px -0.72px 1.01px -1.25px rgba(0,0,0,0.07), 0px -2.75px 3.84px -2.5px rgba(0,0,0,0.06), 0px -12px 16.8px -3.75px rgba(0,0,0,0.03)",
-    buttonShadow: "0px 8px 32px 0px rgba(13,13,13,0.3)",
-    autoPlay: true,
-  },
-  {
-    videoUrl:
-      "https://res.cloudinary.com/m4hnnyml/video/upload/v1791369394/client_review_2.mp4",
-    transform: "rotate(5deg) skewY(-8deg)",
-    borderRadius: "26px 26px 0 0",
-    videoBorderRadius: "20px 20px 0 0",
-    boxShadow:
-      "0px 24px 52px 0px rgba(13,13,13,0.2), 0px -0.72px 1.01px -1.25px rgba(0,0,0,0.07), 0px -2.75px 3.84px -2.5px rgba(0,0,0,0.06), 0px -12px 16.8px -3.75px rgba(0,0,0,0.03)",
-    buttonShadow: "0px 8px 32px 0px rgba(13,13,13,0.3)",
+    transform: "none",
     autoPlay: true,
   },
 ];
@@ -44,7 +25,7 @@ export default function Reels() {
         relative
         w-full
         overflow-hidden
-        px-3
+        px-0
         py-12
         sm:px-6
         sm:py-16
@@ -52,63 +33,73 @@ export default function Reels() {
       "
     >
       {/* MOBILE SLIDER */}
-      <div className="sm:hidden">
+      <div className="w-full sm:hidden">
         <div
           className="
             flex
+            w-full
             snap-x
             snap-mandatory
-            gap-5
+            gap-4
             overflow-x-auto
-            px-5
+            px-[calc((100vw-72vw)/2)]
             pb-8
             scrollbar-hide
+            overscroll-x-contain
           "
+          style={{
+            WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none",
+          }}
         >
           {videos.map((video, index) => (
             <div
               key={index}
               className="
-                flex
-                min-w-[82vw]
+                w-[72vw]
+                shrink-0
                 snap-center
-                justify-center
               "
             >
               <TiltedVideoCard
                 {...video}
-                width="320px"
-                height="516px"
+                width="100%"
+                height="auto"
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* TABLET + DESKTOP — SAME AS BEFORE */}
+      {/* TABLET + DESKTOP */}
       <div
         className="
           mx-auto
           hidden
+          w-full
           max-w-6xl
-          items-end
+          items-center
           justify-center
-          gap-4
+          gap-6
           sm:flex
-          md:gap-6
+          md:gap-10
         "
       >
         {videos.map((video, index) => (
           <div
             key={index}
             className="
-              min-w-0
-              flex-1
-              sm:scale-90
-              md:scale-100
+              w-[220px]
+              shrink-0
+              md:w-[260px]
+              lg:w-[292px]
             "
           >
-            <TiltedVideoCard {...video} />
+            <TiltedVideoCard
+              {...video}
+              width="100%"
+              height="auto"
+            />
           </div>
         ))}
       </div>
@@ -125,7 +116,7 @@ export default function Reels() {
           max-w-6xl
           flex-col
           gap-2
-          px-1
+          px-4
           sm:-mt-8
           sm:w-[calc(100%-3.5rem)]
           sm:gap-4
