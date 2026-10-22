@@ -11,10 +11,13 @@ import SingleCaseStudy from "./pages/SingleCaseStudy";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
     <>
+            <ScrollToTop />
+
       <Navbar />
 
       <Routes>
