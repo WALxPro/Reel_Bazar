@@ -22,11 +22,7 @@ const CREDIT = {
 };
 
 const SOCIALS = [
-  {
-    label: "LinkedIn",
-    href: "www.linkedin.com/in/the-reel-bazar-a916ba417",
-    Icon: FaLinkedinIn,
-  },
+  
   {
     label: "YouTube",
     href: "https://www.youtube.com/@TheReelBazar-g8h",
