@@ -86,3 +86,24 @@ body {
       #010214 55%,
       #000 65%);
 }
+
+
+@keyframes whatsappBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.whatsapp-bounce {
+  animation: whatsappBounce 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-bounce {
+    animation: none;
+  }
+}
