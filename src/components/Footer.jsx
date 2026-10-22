@@ -42,7 +42,7 @@ const SOCIALS = [
 
 const COMPANY_LINKS = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
+  { label: "About", to: "/about-us" },
   { label: "Work", href: "/case-study" },
   
 ];
