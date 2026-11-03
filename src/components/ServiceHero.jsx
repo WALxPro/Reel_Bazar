@@ -4,7 +4,7 @@ const LEAF_OPACITY = 0.22;
 
 // top = visible, bottom = fades into the background
 const LEAF_MASK =
-  "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.05) 100%)";
+  "linear-gradient(to bottom, var(--bg) 0%, color-mix(in srgb, var(--bg) 55%, transparent) 55%, transparent 100%)";
 
 const leafStyle = {
   opacity: LEAF_OPACITY,
@@ -14,7 +14,7 @@ const leafStyle = {
 
 const TrustedBy = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-black px-5 pt-36 pb-24 sm:px-8 md:pt-44 md:pb-32">
+    <section className="relative w-full overflow-hidden bg-[var(--bg)] px-5 pt-36 pb-24 sm:px-8 md:pt-44 md:pb-32">
       <div className="relative mx-auto flex min-h-[300px] w-full max-w-[940px] flex-col items-center justify-center text-center">
         {/* Laurels (desktop only) */}
         <img

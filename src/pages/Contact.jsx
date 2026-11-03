@@ -3,24 +3,12 @@ import emailjs from "@emailjs/browser";
 import { Mail, Clock, CheckCircle2 } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import Button from "../components/Button";
+import PageHero from "../components/PageHero";
 
 const CONTACT_EMAIL = "contact@thereelbazar.com";
 const INSTAGRAM_HANDLE = "@_thereelbazar";
 
-const inputClasses = `
-  h-10
-  w-full
-  rounded-md
-  border
-  border-white/20
-  bg-transparent
-  px-3
-  text-sm
-  text-white
-  outline-none
-  placeholder:text-white/50
-  focus:border-white/40
-`;
+const inputClasses = "rb-contact-input";
 
 const Field = ({ label, children }) => (
   <label className="flex w-full flex-col gap-2">
@@ -100,7 +88,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="w-full bg-black px-5 pt-36 pb-24 sm:px-8 md:pt-44 md:pb-32">
+    <><PageHero eyebrow="Start a conversation" title="Let’s build" accent="something noticed." description="Tell us what you are making and we’ll shape the right creative plan." /><section className="w-full bg-black px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.4fr]">
         {/* LEFT */}
         <div className="flex flex-col gap-8">
@@ -192,21 +180,7 @@ const Contact = () => {
         {/* RIGHT — FORM */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-[10px]  p-6 sm:p-8"
-          style={{
-            "--border-bottom-width": "1px",
-            "--border-color": "rgba(171, 171, 171, 0.2)",
-            "--border-left-width": "1px",
-            "--border-right-width": "1px",
-            "--border-style": "solid",
-            "--border-top-width": "1px",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            background: "rgba(0, 0, 0, 0)",
-
-            border: "1px solid rgba(171, 171, 171, 0.2)",
-            boxShadow: "rgba(0, 0, 0, 0.25) 2px 5px 10px 0px",
-          }}
+          className="rb-contact-form rounded-[10px] p-6 sm:p-8"
         >
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {/* NAME */}
@@ -249,11 +223,13 @@ const Contact = () => {
               <select
                 value={form.service}
                 onChange={update("service")}
-                className={`${inputClasses} cursor-pointer bg-[#121212]`}
+                className={`${inputClasses} cursor-pointer`}
               >
                 <option>Short-Form Video Editing</option>
                 <option>Long-Form Video Editing</option>
                 <option>Explainer Video</option>
+                <option>Social Media Management</option>
+                <option>Website Development</option>
                 <option>Full Content Management</option>
               </select>
             </Field>
@@ -282,21 +258,7 @@ const Contact = () => {
                         format: opt,
                       }))
                     }
-                    className={`
-                      flex-1
-                      rounded-md
-                      border
-                      text-xs
-                      font-semibold
-                      uppercase
-                      tracking-wide
-                      transition
-                      ${
-                        form.format === opt
-                          ? "border-white bg-white text-black"
-                          : "border-white/20 bg-transparent text-white/50 hover:border-white/40"
-                      }
-                    `}
+                    className={`rb-format-button ${form.format === opt ? "is-active" : ""}`}
                   >
                     {opt}
                   </button>
@@ -313,21 +275,7 @@ const Contact = () => {
                 placeholder="Video length, style references, deadlines, where it will be published..."
                 value={form.details}
                 onChange={update("details")}
-                className="
-                  w-full
-                  resize-none
-                  rounded-md
-                  border
-                  border-white/20
-                  bg-transparent
-                  px-3
-                  py-2
-                  text-sm
-                  text-white
-                  outline-none
-                  placeholder:text-white/50
-                  focus:border-white/40
-                "
+                className="rb-contact-input rb-contact-textarea"
               />
             </Field>
           </div>
@@ -349,42 +297,26 @@ const Contact = () => {
           <button
             type="submit"
             disabled={sending}
-            className="
-    mt-8
-    w-full
-    rounded-md
-     border-white/30
-        bg-white/30
-    px-6
-    py-3
-    text-sm
-    font-semibold
-    
-    transition
-    hover:bg-white/30
-    text-white
-    disabled:cursor-not-allowed
-    disabled:opacity-60
-  "
+            className="rb-button rb-contact-submit"
           >
             {sending ? "Sending..." : "Send My Request"}
           </button>
 
           {/* STATUS */}
           {status === "success" && (
-            <p className="mt-4 text-center text-sm text-green-400">
+            <p className="rb-contact-success">
               Your request has been sent successfully.
             </p>
           )}
 
           {status === "error" && (
-            <p className="mt-4 text-center text-sm text-red-400">
+            <p className="rb-contact-error">
               Something went wrong. Please try again.
             </p>
           )}
         </form>
       </div>
-    </section>
+    </section></>
   );
 };
 

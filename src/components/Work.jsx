@@ -1,63 +1,41 @@
-import React, { useState } from "react";
-import ProjectFilter from "./ProjectFilter";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
-import {projects} from "../data";
+import ProjectFilters from "./ProjectFilters";
+import { portfolioProjects } from "../data/projects";
 import { Reveal } from "./Motion";
 
-const Work = () => {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("all");
-
- const filteredProjects = projects.filter((project) => {
-  const searchWords = search.toLowerCase().trim().split(/\s+/);
-
-  const searchableText = `
-    ${project.title}
-    ${project.type}
-    ${project.category}
-  `.toLowerCase();
-
-  const matchesSearch = searchWords.every((word) =>
-    searchableText.includes(word)
+export default function Work() {
+  const [filter, setFilter] = useState("all");
+  const visibleProjects = useMemo(
+    () => filter === "all"
+      ? portfolioProjects
+      : portfolioProjects.filter((project) => project.type === filter),
+    [filter],
   );
 
-  const matchesCategory =
-    category === "all" || project.type === category;
-
-  return matchesSearch && matchesCategory;
-});
   return (
-    <section className="w-full bg-black px-5 py-16 sm:px-8 md:px-12 lg:px-20 lg:py-24">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
-        <Reveal><ProjectFilter
-          search={search}
-          setSearch={setSearch}
-          category={category}
-          setCategory={setCategory}
-        /></Reveal>
-
-        {filteredProjects.length > 0 ? (
-          <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
-            {filteredProjects.map((project) => (
-              <Reveal key={project.number} variant="card" delay={filteredProjects.indexOf(project) * 0.1}><ProjectCard {...project} /></Reveal>
-            ))}
-          </div>
-        ) : (
-          <div className="flex min-h-[250px] w-full items-center justify-center rounded-2xl border border-white/20 bg-[#121212]">
-            <div className="text-center">
-              <h3 className="text-xl font-medium text-white">
-                No projects found
-              </h3>
-
-              <p className="mt-2 text-sm text-white/50">
-                Try a different search or category.
-              </p>
-            </div>
-          </div>
-        )}
+    <section className="rb-section rb-portfolio" aria-label="Portfolio projects">
+      <div className="rb-wrap">
+        <Reveal variant="heading">
+          <p className="rb-eyebrow">On the timeline</p>
+          <h2>Work that <em>speaks.</em></h2>
+          <p className="rb-subtitle">Websites, social media campaigns and videos. Select a project to see what we delivered.</p>
+        </Reveal>
+        <ProjectFilters active={filter} onChange={setFilter} />
+        <div className="rb-project-grid">
+          {visibleProjects.map((project) => (
+            <Reveal key={project.id} variant="card">
+              <ProjectCard project={project} />
+            </Reveal>
+          ))}
+        </div>
+        <div className="rb-bundle rb-portfolio-cta">
+          <p>Next up</p>
+          <h3>Your project could be <em>next.</em></h3>
+          <Link className="rb-button rb-glow" to="/contact">Start a project ↗</Link>
+        </div>
       </div>
     </section>
   );
-};
-
-export default Work;
+}

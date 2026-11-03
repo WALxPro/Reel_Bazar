@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { VolumeX, Volume2 } from "lucide-react";
-import { projects } from "../data";
+import { projects } from "../data/projects";
 
 const SingleCaseStudy = () => {
   const { slug } = useParams();
@@ -39,19 +39,19 @@ const SingleCaseStudy = () => {
 
   if (!project) {
     return (
-      <section className="flex min-h-screen items-center justify-center bg-black">
+      <section className="flex min-h-screen items-center justify-center bg-[var(--bg)]">
         <p className="text-white/60">Project not found.</p>
       </section>
     );
   }
 
   return (
-    <section className="w-full bg-black px-5 pb-[100px] pt-[120px] sm:px-8 md:px-12 md:pt-[150px] lg:px-20">
+    <section className="w-full bg-[var(--bg)] px-5 pb-[100px] pt-[120px] sm:px-8 md:px-12 md:pt-[150px] lg:px-20">
       <div className="mx-auto w-full max-w-6xl">
         {/* TOP CONTENT */}
         <div className="mx-auto mb-10 flex max-w-4xl flex-col items-center text-center">
           {/* Type */}
-          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-[#1c1c1c] px-4 py-2 text-sm text-white/80">
+          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-[var(--pn)] px-4 py-2 text-sm text-white/80">
             <span className="text-white/40">•</span>
             {project.type}
           </div>
@@ -91,7 +91,7 @@ const SingleCaseStudy = () => {
       rounded-2xl
       border
       border-white/10
-      bg-[#0d0d0d]
+      bg-[var(--bg)]
     "
             style={{
               aspectRatio,
@@ -126,8 +126,8 @@ const SingleCaseStudy = () => {
         justify-center
         rounded-full
         border
-        border-white/20
-        bg-white/[0.12]
+        border-[var(--ln)]
+        bg-[var(--pn)]
         text-white
         backdrop-blur-xl
       "

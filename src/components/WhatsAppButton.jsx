@@ -36,16 +36,16 @@ export default function FloatingContactButtons() {
         href={emailUrl}
         aria-label="Send us an email"
         className="
-          floating-bounce
+          whatsapp-bounce
           flex
           h-14
           w-14
           items-center
           justify-center
           rounded-full
-          bg-[#EA4335]
+          bg-[var(--red)]
           text-white
-          shadow-[0_8px_25px_rgba(234,67,53,0.4)]
+          rb-contact-shadow-red
           transition-shadow
           hover:shadow-xl
         "
@@ -60,16 +60,16 @@ export default function FloatingContactButtons() {
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
         className="
-          floating-bounce
+          whatsapp-bounce
           flex
           h-16
           w-16
           items-center
           justify-center
           rounded-full
-          bg-[#25D366]
+          bg-[var(--tl)]
           text-white
-          shadow-[0_8px_25px_rgba(37,211,102,0.45)]
+          rb-contact-shadow-teal
           transition-shadow
           hover:shadow-xl
         "

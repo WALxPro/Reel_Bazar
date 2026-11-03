@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Plus, X } from "lucide-react";
 import Button from "../components/Button";
+import PageHero from "../components/PageHero";
 
 const faqs = [
   {
@@ -11,7 +12,7 @@ const faqs = [
   {
     question: "What services do you offer?",
     answer:
-      "We provide video editing, custom video production, content strategy development, social media optimization, and more, tailored to meet your needs.",
+      "TheReelBazar offers video editing, social media management and website development. Choose one service or combine all three with a bundle quote.",
   },
  
   {
@@ -47,18 +48,13 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="w-full bg-black px-5 pt-36 pb-24 sm:px-8 md:pt-44 md:pb-32">
+    <><PageHero eyebrow="Good to know" title="Questions," accent="answered." description="The practical details behind a smooth creative partnership." /><section className="rb-section rb-faq-section">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.3fr]">
         {/* Left */}
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-2 text-sm text-white/70">
-            <span className="h-2 w-2 rounded-full bg-orange-500" />
-            FAQ
-          </div>
+          <p className="rb-eyebrow">Project bin</p>
 
-          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Frequently asked questions about us
-          </h2>
+          <h2>Good to <em>know.</em></h2>
 
           <div className="relative overflow-hidden rounded-2xl border border-white/10">
            <video
@@ -91,23 +87,24 @@ const FAQ = () => {
             return (
               <div
                 key={faq.question}
-                className="rounded-2xl bg-[#141414] p-5 transition"
+                className={`rb-faq-item ${isOpen ? "is-open" : ""}`}
               >
                 <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex w-full items-center justify-between gap-4 text-left"
+                  className="rb-faq-question"
                 >
-                  <span className="text-[15px] font-semibold text-white sm:text-base">
+                  <span>
                     {faq.question}
                   </span>
 
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white">
-                    {isOpen ? <X size={15} /> : <Plus size={15} />}
-                  </span>
+                  <span className={`rb-faq-icon ${isOpen ? "is-open" : ""}`} aria-hidden="true">{isOpen ? <X size={20} /> : <Plus size={20} />}</span>
                 </button>
 
                 {isOpen && (
-                  <p className="mt-3 text-sm leading-relaxed text-white/60">
+                  <p className="rb-faq-answer" id={`faq-answer-${index}`}>
                     {faq.answer}
                   </p>
                 )}
@@ -116,7 +113,7 @@ const FAQ = () => {
           })}
         </div>
       </div>
-    </section>
+    </section></>
   );
 };
 

@@ -1,0 +1,44 @@
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
+export default function ProjectModal({ project, onClose }) {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  if (!project) return null;
+
+  return (
+    <div className="rb-modal" onMouseDown={(event) => {
+      if (event.target === event.currentTarget) onClose();
+    }} role="presentation">
+      <article className="rb-modal-card" role="dialog" aria-modal="true" aria-label={`${project.brand} project details`} tabIndex={-1}>
+        <button type="button" className="rb-close" onClick={onClose} aria-label="Close project">×</button>
+        <div className="rb-modal-media">
+          {project.videoUrl ? (
+            <video src={project.videoUrl} poster={project.thumbnail} controls autoPlay muted playsInline preload="metadata" />
+          ) : project.type === "Websites" ? (
+            <span className="rb-browser-mock" aria-hidden="true"><span className="rb-browser-bar"><i /><i /><i /><u /></span><span className="rb-browser-hero"><i /><i /></span><span className="rb-browser-blocks"><i /><i /><i /></span></span>
+          ) : (
+            <span className="rb-instagram-mock" aria-hidden="true"><span className="rb-instagram-profile"><i /><u /></span><span className="rb-instagram-grid">{Array.from({ length: 9 }, (_, i) => <i key={i} />)}</span></span>
+          )}
+        </div>
+        <div className="rb-modal-content">
+          <p className="rb-mono">{project.type}</p>
+          <h2>{project.brand}</h2>
+          <p>{project.description}</p>
+          <h3>What we delivered</h3>
+          <ul>{project.deliverables.map((item) => <li key={item}>{item}</li>)}</ul>
+          <div className="rb-modal-actions">
+            {project.slug && <Link className="rb-button rb-outline" to={`/case-study/${project.slug}`} onClick={onClose}>See case study ↗</Link>}
+            <Link className="rb-button" to="/contact" onClick={onClose}>Start a similar project ↗</Link>
+          </div>
+        </div>
+      </article>
+    </div>
+  );
+}

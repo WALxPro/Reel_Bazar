@@ -10,6 +10,10 @@ export function Reveal({ children, className = "", delay = 0, variant = "section
 
   useEffect(() => {
     if (reduceMotion() || !ref.current) return;
+    if (!("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setVisible(true);
@@ -38,6 +42,10 @@ export function AnimatedWord({ children, className = "", delay = 0 }) {
 
   useEffect(() => {
     if (reduceMotion() || !ref.current) return;
+    if (!("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setVisible(true);

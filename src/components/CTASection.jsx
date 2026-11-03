@@ -1,71 +1,19 @@
 
-import Button from "./Button";
+import { Link } from "react-router-dom";
 import { Reveal } from "./Motion";
 
 const CTASection = () => {
   return (
-    <section
-      className="
-        w-full
-        bg-black
-        md:px-5
-        px-0
-        flex
-        justify-center
-      "
-    >
-      <div
-        className="
-          relative
-          flex
-          w-full
-          max-w-[1200px]
-          flex-col
-          items-center
-          justify-center
-          overflow-hidden
-          rounded-[20px]
-          px-6
-          py-10
-          md:pb-16
-          md:pt-32
-          text-center
-          md:px-[60px]
-          cta-gradient
-        "
-      >
-        <Reveal className="relative z-10 max-w-3xl">
-        
-
-          <h2
-            className="
-              mt-3
-              text-4xl
-              font-bold
-              leading-none
-              tracking-[-0.08em]
-              text-white
-              md:text-[40px]
-              text-[24px]
-            "
-          >
-            Ready To Turn Your Raw Footage Into Content People Actually Watch?
-          </h2>
-
-        
-
-          <div
-            className="
-              mt-8
-              flex
-              flex-wrap
-              justify-center
-              gap-3
-            "
-          >
-            
-            <Button text="View Our Work" to="/case-study"/>
-            <Button text="Contact Us" to="/contact"/>
+    <section className="rb-section rb-cta-section">
+      <div className="rb-wrap">
+        <Reveal className="rb-export">
+          <p className="rb-eyebrow">Export</p>
+          <h2>Ready to export your <em>big idea?</em></h2>
+          <div className="rb-progress" role="progressbar" aria-label="Project readiness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i /></div>
+          <p className="rb-progress-label">Rendering · 100% · Let’s start your project</p>
+          <div className="rb-export-actions">
+            <Link className="rb-button rb-glow" to="/contact">Get a free quote ↗</Link>
+            <Link className="rb-button rb-outline" to="/case-study">See our work</Link>
           </div>
         </Reveal>
       </div>

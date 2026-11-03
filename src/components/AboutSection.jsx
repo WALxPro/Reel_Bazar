@@ -38,7 +38,7 @@ const AboutSection = () => {
         >
           <Reveal variant="heading"><h2
             className="
-              font-serif
+              font-['Instrument_Serif']
               text-4xl
               italic
               font-medium

@@ -61,17 +61,3 @@ export default function App() {
     </>
   );
 }
-
-
-//  <h1
-//           className="w-fit rounded-full px-3 py-2 text-sm font-semibold text-white md:px-7 md:py-3"
-//           style={{
-//             backdropFilter: "blur(10px)",
-//             background: ACTIVE_BG,
-//             border: "1px solid rgba(255, 255, 255, 0.15)",
-//             borderRadius: "30px",
-//             boxShadow: "rgba(0, 0, 0, 0.25) 0px 2px 2px 0px",
-//           }}
-//         >
-//           Selected Work
-//         </h1>

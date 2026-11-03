@@ -1,132 +1,50 @@
+import ProjectCard from "./ProjectCard";
+import { Reveal } from "./Motion";
 
-import BrandsTicker from "./Brandsticker";
-import TagsTicker from "./Tagsticker";
-import TiltedVideoCard from "./TiltedVideoCard";
-
-const videos = [
+const reelProjects = [
   {
-    videoUrl:
-      "https://res.cloudinary.com/daterfw1n/video/upload/v1792626435/Test_cmewvw.mp4",
-    transform: "none",
-    autoPlay: true,
+    id: "client-review-one",
+    type: "Video editing",
+    brand: "Client review",
+    label: "Client testimonial reel",
+    description: "A client review shared as a short-form video.",
+    deliverables: ["Short-form edit", "Social-ready video"],
+    colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
+    videoUrl: "https://res.cloudinary.com/daterfw1n/video/upload/v1792626435/Test_cmewvw.mp4",
   },
   {
-    videoUrl:
-      "https://res.cloudinary.com/m4hnnyml/video/upload/v1791369394/client_review_2.mp4",
-    transform: "none",
-    autoPlay: true,
+    id: "client-review-two",
+    type: "Video editing",
+    brand: "Client review",
+    label: "Client testimonial reel",
+    description: "A client review shared as a short-form video.",
+    deliverables: ["Short-form edit", "Social-ready video"],
+    colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
+    videoUrl: "https://res.cloudinary.com/m4hnnyml/video/upload/v1791369394/client_review_2.mp4",
   },
 ];
 
 export default function Reels() {
   return (
-    <section
-      className="
-        relative
-        w-full
-        overflow-hidden
-        px-0
-        py-12
-        sm:px-6
-        sm:py-16
-        lg:py-20
-      "
-    >
-      {/* MOBILE SLIDER */}
-      <div className="w-full sm:hidden">
-        <div
-          className="
-            flex
-            w-full
-            snap-x
-            snap-mandatory
-            gap-4
-            overflow-x-auto
-            px-[calc((100vw-72vw)/2)]
-            pb-8
-            scrollbar-hide
-            overscroll-x-contain
-          "
-          style={{
-            WebkitOverflowScrolling: "touch",
-            scrollbarWidth: "none",
-          }}
-        >
-          {videos.map((video, index) => (
-            <div
-              key={index}
-              className="
-                w-[72vw]
-                shrink-0
-                snap-center
-              "
-            >
-              <TiltedVideoCard
-                {...video}
-                width="100%"
-                height="auto"
-              />
-            </div>
+    <section className="rb-section rb-reels" aria-labelledby="rb-reels-title">
+      <div className="rb-wrap">
+        <Reveal variant="heading">
+          <p className="rb-eyebrow">Client reels</p>
+          <h2 id="rb-reels-title">
+            Real clients. <em>Real reels.</em>
+          </h2>
+          <p className="rb-subtitle">
+            A closer look at the video edits we created for our clients.
+          </p>
+        </Reveal>
+
+        <div className="rb-project-grid">
+          {reelProjects.map((project) => (
+            <Reveal key={project.id} variant="card">
+              <ProjectCard project={project} />
+            </Reveal>
           ))}
         </div>
-      </div>
-
-      {/* TABLET + DESKTOP */}
-      <div
-        className="
-          mx-auto
-          hidden
-          w-full
-          max-w-6xl
-          items-center
-          justify-center
-          gap-6
-          sm:flex
-          md:gap-10
-        "
-      >
-        {videos.map((video, index) => (
-          <div
-            key={index}
-            className="
-              w-[220px]
-              shrink-0
-              md:w-[260px]
-              lg:w-[292px]
-            "
-          >
-            <TiltedVideoCard
-              {...video}
-              width="100%"
-              height="auto"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* TICKERS */}
-      <div
-        className="
-          relative
-          z-10
-          mx-auto
-          -mt-4
-          flex
-          w-full
-          max-w-6xl
-          flex-col
-          gap-2
-          px-4
-          sm:-mt-8
-          sm:w-[calc(100%-3.5rem)]
-          sm:gap-4
-          sm:px-0
-          md:-mt-12
-        "
-      >
-        <TagsTicker />
-        <BrandsTicker />
-        <TagsTicker />
       </div>
     </section>
   );

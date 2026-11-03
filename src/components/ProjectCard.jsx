@@ -1,213 +1,156 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { ArrowUpRight, Volume2, VolumeX } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import ProjectModal from "./ProjectModal";
 
-const ProjectCard = ({
-  number = "0.7",
-  title = "Lifestyle Reset",
-  type = "Long Form",
-  category = "Lifestyle",
-  video,
-  slug,
-}) => {
+const typeClass = {
+  Websites: "website",
+  "Social media": "social",
+  "Video editing": "video",
+};
+
+function WebsiteMock() {
+  return (
+    <span className="rb-browser-mock" aria-hidden="true">
+      <span className="rb-browser-bar"><i /><i /><i /><u /></span>
+      <span className="rb-browser-hero"><i /><i /></span>
+      <span className="rb-browser-blocks"><i /><i /><i /></span>
+    </span>
+  );
+}
+
+function SocialMock() {
+  return (
+    <span className="rb-instagram-mock" aria-hidden="true">
+      <span className="rb-instagram-profile"><i /><u /></span>
+      <span className="rb-instagram-grid">
+        {Array.from({ length: 9 }, (_, i) => <i key={i} />)}
+      </span>
+    </span>
+  );
+}
+
+export default function ProjectCard({ project }) {
   const videoRef = useRef(null);
-  const containerRef = useRef(null);
+  const cardRef = useRef(null);
+  const [nearViewport, setNearViewport] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const [muted, setMuted] = useState(true);
-  const [shouldLoad, setShouldLoad] = useState(false); // controls src attach (lazy load)
-  const [isInView, setIsInView] = useState(false); // controls play/pause
+  const isVideo = project.type === "Video editing";
+  const hasVideo = isVideo && Boolean(project.videoUrl);
+  const hasImage = !isVideo && Boolean(project.thumbnail);
+  const hasMedia = hasVideo || hasImage;
 
-  // Lazy-load: only attach the video src once the card is near the viewport
+  // Viewport ke paas aane par hi video load karo
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const loadObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShouldLoad(true);
-            loadObserver.disconnect(); // only need to trigger this once
-          }
-        });
-      },
-      { rootMargin: "300px 0px" }, // start loading a bit before it's visible
-    );
-
-    loadObserver.observe(el);
-    return () => loadObserver.disconnect();
-  }, []);
-
-  // Play/pause: only play the video while it's actually visible on screen
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const playObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.4 }, // needs to be reasonably visible before playing
-    );
-
-    playObserver.observe(el);
-    return () => playObserver.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const vid = videoRef.current;
-    if (!vid || !shouldLoad) return;
-
-    if (isInView) {
-      const playPromise = vid.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay was blocked (e.g. browser policy) — safe to ignore
-        });
-      }
-    } else {
-      vid.pause();
+    const card = cardRef.current;
+    if (!card || !("IntersectionObserver" in window)) {
+      setNearViewport(true);
+      return undefined;
     }
-  }, [isInView, shouldLoad]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" },
+    );
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, []);
 
-  const toggleMute = () => {
-    if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setMuted(videoRef.current.muted);
+  // Card screen par ho to video chale, warna ruk jaye
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card || !hasVideo) return undefined;
+    if (!("IntersectionObserver" in window)) {
+      setPlaying(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setPlaying(entry.isIntersecting),
+      { threshold: 0.35 },
+    );
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [hasVideo]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (playing) {
+      video.play().catch(() => setPlaying(false));
+    } else {
+      video.pause();
+    }
+  }, [playing, nearViewport]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setModalOpen(true);
+    }
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="
-        w-full
-        self-start
-        overflow-hidden
-        rounded-2xl
-        border
-        border-white/25
-        bg-[#121212]
-        transition-transform
-        duration-300
-        hover:-translate-y-1
-      "
-    >
-      {/* Top */}
-      <div className="flex items-center justify-between px-4 py-4">
-        <div className="flex items-center gap-3">
-          <div
-            className="
-              flex
-              h-[38px]
-              min-w-[38px]
-              items-center
-              justify-center
-              rounded-[10px]
-              bg-[#212121]
-              px-2
-              text-[18px]
-              text-white
-            "
-          >
-            {number}
-          </div>
+    <>
+      <article ref={cardRef} className="rb-project-card">
+        <div className={`rb-project-thumbnail${hasMedia ? " has-media" : ""}`}>
+          {/* Video */}
+          {hasVideo && (
+            <video
+              ref={videoRef}
+              className="rb-project-media"
+              src={nearViewport ? project.videoUrl : undefined}
+              poster={project.thumbnail}
+              muted
+              loop
+              playsInline
+              preload="none"
+              aria-label={`${project.brand} video preview`}
+            />
+          )}
+          {isVideo && !project.videoUrl && (
+            <span className="rb-video-mock"><i /><b /></span>
+          )}
 
-          <h4 className="text-[18px] font-medium text-white">{title}</h4>
+          {/* Social / Website: real image ho to wo, warna mock */}
+          {hasImage && (
+            <img
+              className="rb-project-media"
+              src={project.thumbnail}
+              alt={`${project.brand}: ${project.label}`}
+              loading="lazy"
+            />
+          )}
+          {!isVideo && !project.thumbnail && project.type === "Websites" && <WebsiteMock />}
+          {!isVideo && !project.thumbnail && project.type === "Social media" && <SocialMock />}
+
+          {isVideo && <span className="rb-video-play" aria-hidden="true">▶</span>}
+          {isVideo && <span className="rb-video-progress" aria-hidden="true"><i /></span>}
         </div>
 
-        <div className="h-2 w-2 rounded-full bg-[#717171]" />
-      </div>
+        <div className="rb-project-info">
+          <span className={`rb-project-type ${typeClass[project.type] || ""}`}>
+            {project.type}
+          </span>
+          <h3>{project.brand}</h3>
+          <p>{project.label}</p>
+        </div>
 
-      {/* Video */}
-      <div className="relative w-full bg-[#1a1a1a] min-h-[200px]">
-        {shouldLoad ? (
-          <video
-            ref={videoRef}
-            src={video}
-            loop
-            muted
-            playsInline
-            preload="none"
-            className="block w-full h-auto"
-          />
-        ) : (
-          // lightweight placeholder while the video hasn't loaded yet
-          <div className="flex h-[200px] w-full items-center justify-center">
-            <div className="h-8 w-8 animate-pulse rounded-full bg-white/10" />
-          </div>
-        )}
-
-        <Link
-          to={`/case-study/${slug}`}
-          className="
-    absolute
-    right-4
-    bottom-4
-    z-10
-    inline-flex
-    items-center
-    gap-[6px]
-    rounded-full
-    border
-    border-white/20
-    bg-white/[0.12]
-    px-[18px]
-    py-[7px]
-    text-[12px]
-    font-semibold
-    text-white
-    backdrop-blur-lg
-  "
-        >
-          See Case Study <ArrowUpRight size={17} />
-        </Link>
-
-        {/* Mute */}
         <button
-          onClick={toggleMute}
-          className="
-            absolute
-            left-4
-            bottom-4
-            z-10
-            flex
-            h-[35px]
-            w-[35px]
-            items-center
-            justify-center
-            rounded-full
-            border
-            border-white/20
-            bg-white/[0.12]
-            text-white
-            backdrop-blur-xl
-          "
-        >
-          {muted ? <VolumeX size={17} /> : <Volume2 size={17} />}
-        </button>
-      </div>
+          type="button"
+          className="rb-project-open"
+          onClick={() => setModalOpen(true)}
+          onKeyDown={handleKeyDown}
+          aria-label={`View ${project.brand}: ${project.label}`}
+        />
+      </article>
 
-      {/* Bottom */}
-      <div className="flex items-center justify-between px-4 py-4">
-        <h5 className="text-sm text-white/70">{type}</h5>
-
-        <div
-          className="
-            rounded-[10px]
-            bg-[#212121]
-            px-3
-            py-2
-            text-xs
-            text-white/80
-          "
-        >
-          {category}
-        </div>
-      </div>
-    </div>
+      {modalOpen && (
+        <ProjectModal project={project} onClose={() => setModalOpen(false)} />
+      )}
+    </>
   );
-};
-
-export default ProjectCard;
+}

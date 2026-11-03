@@ -21,13 +21,13 @@ const AvatarItem = ({ name, avatar }) => (
       className="h-14 w-14 shrink-0 rounded-full p-[2px] sm:h-16 sm:w-16"
       style={{
         background:
-          "linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4)",
+          "linear-gradient(135deg, var(--red), var(--sun), var(--tl))",
       }}
     >
       <img
         src={avatar}
         alt={name}
-        className="h-full w-full rounded-full border-2 border-black object-cover"
+        className="h-full w-full rounded-full border-2 border-[var(--bg)] object-cover"
       />
     </div>
     <span className="text-xs text-white/70">{name}</span>
@@ -39,7 +39,7 @@ const BrandsTicker = () => {
   const loopItems = [...people, ...people, ...people];
 
   return (
-    <div className="w-full bg-black px-4 py-5 sm:px-7">
+    <div className="w-full bg-[var(--bg)] px-4 py-5 sm:px-7">
       <style>{`
         @keyframes brands-ticker-scroll {
           from { transform: translateX(0); }
@@ -54,9 +54,9 @@ const BrandsTicker = () => {
         className="relative flex h-full w-full items-center overflow-hidden"
         style={{
           maskImage:
-            "linear-gradient(to right, transparent 0%, black 12.5%, black 87.5%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, var(--bg) 12.5%, var(--bg) 87.5%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 12.5%, black 87.5%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, var(--bg) 12.5%, var(--bg) 87.5%, transparent 100%)",
         }}
       >
         <ul className="brands-ticker-track flex w-max list-none items-start gap-8 p-0 sm:gap-10">

@@ -24,7 +24,7 @@ const TagsTicker = () => {
   const loopItems = [...tags, ...tags, ...tags, ...tags];
 
   return (
-    <div className="w-full bg-black px-4 py-6 sm:px-7">
+    <div className="w-full bg-[var(--bg)] px-4 py-6 sm:px-7">
       <style>{`
         @keyframes tags-ticker-scroll {
           from {
@@ -44,9 +44,9 @@ const TagsTicker = () => {
         className="relative flex h-full w-full items-center overflow-hidden"
         style={{
           maskImage:
-            "linear-gradient(to right, transparent 0%, black 12.5%, black 87.5%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, var(--bg) 12.5%, var(--bg) 87.5%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 12.5%, black 87.5%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, var(--bg) 12.5%, var(--bg) 87.5%, transparent 100%)",
         }}
       >
         <ul className="tags-ticker-track flex w-max list-none items-center gap-8 p-0">

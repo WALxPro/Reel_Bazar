@@ -1,0 +1,32 @@
+export const servicePlans = {
+  website: {
+    name: "Website development",
+    accent: "var(--tl)",
+    unit: "one-time",
+    buildSteps: [
+      { number: "01", name: "Plan", detail: "Goals, pages, content and sitemap." },
+      { number: "02", name: "Design", detail: "A custom look in your brand style." },
+      { number: "03", name: "Build", detail: "Fast, responsive code with SEO built in." },
+      { number: "04", name: "Launch", detail: "Testing, go-live and Google setup." },
+    ],
+    plans: [
+      { name: "Starter", price: 150, subtitle: "Landing / portfolio site", delivery: "3–5 days", features: ["Up to 3 pages", "Mobile-responsive design", "Contact form + WhatsApp button", "Basic on-page SEO", "Social media links", "2 rounds of revisions"] },
+      { name: "Business", price: 300, featured: true, subtitle: "Full business website", delivery: "7–10 days", features: ["Up to 6 pages", "Custom design in your brand style", "SEO setup: meta tags, sitemap, schema", "Speed optimization", "Google Analytics & Search Console", "Blog / news section", "3 rounds of revisions"] },
+      { name: "Premium", price: 500, subtitle: "Online store or advanced site", delivery: "10–14 days", features: ["Up to 10 pages or online store", "Product catalog & secure checkout", "Booking / payment integrations", "Advanced SEO & speed tuning", "Admin panel", "30 days of free support", "Unlimited minor revisions"] },
+    ],
+    addons: ["Extra page — $15 each", "Logo & brand kit — from $40", "Content writing — from $25 / page", "Extra revision round — $20", "Monthly care & updates — $30 / mo", "Domain & hosting — at cost"],
+  },
+  social: {
+    name: "Social media management",
+    accent: "var(--sun)",
+    unit: "per month",
+    platforms: ["Instagram", "Facebook", "TikTok", "YouTube", "LinkedIn"],
+    cycle: ["Research", "Plan", "Create", "Publish", "Engage", "Report"],
+    plans: [
+      { name: "Starter", price: 250, suffix: "/mo", subtitle: "1 platform", features: ["1 platform (Instagram or Facebook)", "12 designed posts / month", "Captions & hashtag research", "Posting & scheduling", "Monthly performance report"] },
+      { name: "Growth", price: 450, suffix: "/mo", featured: true, subtitle: "2 platforms", features: ["2 platforms", "16 posts + 8 reels / month", "Monthly content calendar & strategy", "Community replies & engagement", "Competitor & hashtag research", "Monthly report + strategy call"] },
+      { name: "Pro", price: 800, suffix: "/mo", subtitle: "3–4 platforms", features: ["3–4 platforms", "24 posts + 12 reels / month", "Full strategy & content calendar", "Daily community management", "Ad campaign management (ad spend extra)", "Weekly updates + monthly report", "Priority support"] },
+    ],
+    addons: ["Extra reel — $20 each", "Extra platform — $120 / mo", "Paid ads management — from $100 / mo", "Shoot day — custom quote", "Profile setup & branding — $60 one-time", "Influencer outreach — custom quote"],
+  },
+};
