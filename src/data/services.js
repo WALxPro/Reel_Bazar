@@ -1,4 +1,21 @@
 export const servicePlans = {
+  video: {
+    name: "Video editing",
+    accent: "var(--tl)",
+    unit: "per video",
+    buildSteps: [
+      { number: "01", name: "Brief", detail: "Your footage, idea and goals." },
+      { number: "02", name: "Edit", detail: "Cuts, pacing, captions and sound." },
+      { number: "03", name: "Review", detail: "You send feedback, we refine." },
+      { number: "04", name: "Deliver", detail: "Final files in every format you need." },
+    ],
+    plans: [
+      { name: "Reel", price: 30, suffix: "/ video", subtitle: "Reels, Shorts & TikTok", delivery: "1–2 days", features: ["Up to 60 seconds", "Subtitles & captions", "Transitions & sound design", "Color correction", "2 rounds of revisions"] },
+      { name: "Long-form", price: 80, suffix: "/ video", featured: true, subtitle: "YouTube videos", delivery: "3–5 days", features: ["Up to 15 minutes", "Cinematic cuts & pacing", "Motion graphics & lower thirds", "Color grading & sound mix", "Subtitles & captions", "3 rounds of revisions"] },
+      { name: "Ads & Promo", price: 100, suffix: "/ video", subtitle: "Ads & brand videos", delivery: "3–5 days", features: ["Up to 90 seconds", "Hook-first ad edits", "Motion graphics & animation", "Multiple aspect ratios", "Color grading & sound design", "Unlimited minor revisions"] },
+    ],
+    addons: ["Extra revision round — $10", "Thumbnail design — $10 each", "Extra aspect ratio — $5", "Voiceover — from $15", "Rush delivery (24h) — +30%", "Custom project — custom quote"],
+  },
   website: {
     name: "Website development",
     accent: "var(--tl)",

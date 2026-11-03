@@ -19,9 +19,9 @@ const Home = () => {
     <HomeWork/>
     <ServicesContent/>
      <Testimonials/>
-     <Pricing/>
+     {/* <Pricing/> */}
      <HowItWorks/>
-     <WhyUs/>
+     {/* <WhyUs/> */}
      <CTASection/>
     </>
   )

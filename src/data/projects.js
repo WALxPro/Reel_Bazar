@@ -327,5 +327,5 @@ export const portfolioProjects = [
     videoUrl: project.video,
     slug: project.slug,
   })),
-  ...reelProjects,
+  
 ];

@@ -27,7 +27,6 @@ html { overflow-x: clip; }
 body {
   position: relative;
   isolation: isolate;
-  overflow-x: hidden;
   background: var(--bg);
   color: var(--tx);
   font-family: "Syne", system-ui, sans-serif;
@@ -48,8 +47,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   outline: 2px solid var(--sun);
   outline-offset: 3px;
 }
-h1, h2, h3, h4, h5, h6 { color: var(--tx); font-family: "Syne", system-ui, sans-serif; font-weight: 800; letter-spacing: -.04em; }
-h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0; }
+h1, h2, h3, h4, h5, h6 { color: var(--tx); font-family: "Syne", system-ui, sans-serif; font-weight: 800; letter-spacing: -.04em; margin-bottom: 30px !important; }
+h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0; margin-bottom: 30px !important; }
 
 /* Keep legacy utility-driven pages on the same tokens without changing their layout. */
 .bg-black, [class*="bg-black/"] { background-color: var(--bg) !important; }
@@ -69,6 +68,7 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 
 .rb-wrap { width: min(100% - 40px, 1240px); margin-inline: auto; }
 .rb-section { padding: clamp(52px, 7vw, 92px) 0; }
+.rb-export { display: flex; flex-direction: column; align-items: flex-start; gap: 18px;  }
 .rb-eyebrow, .rb-mono, .rb-timecode, .rb-now, .rb-card-strip, .rb-tags, .rb-project-type, .rb-delivery, .rb-progress-label {
   font-family: "DM Mono", monospace;
 }
@@ -89,7 +89,7 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 }
 .rb-subtitle {
   max-width: 38em;
-  margin: 16px 0 0;
+  margin: 16px 0 30px;
   color: color-mix(in srgb, var(--tx) 76%, transparent);
   font-size: 18px;
   font-weight: 600;
@@ -101,6 +101,7 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
   justify-content: center;
   gap: 10px;
   padding: 12px 24px;
+  
   border: 0;
   border-radius: 99px;
   background: var(--red);
@@ -116,7 +117,7 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
   transition: transform .25s, background-color .25s, color .25s, border-color .25s;
 }
 .rb-button:hover { transform: translateY(-3px); }
-.rb-button.rb-outline { border: 1.5px solid var(--tx); background: transparent; color: var(--tx); }
+.rb-button.rb-outline {margin-left: 10px; border: 1.5px solid var(--tx); background: transparent; color: var(--tx); }
 .rb-button.rb-outline:hover { border-color: var(--sun); color: var(--sun); }
 .rb-button.rb-yellow { background: var(--sun); color: var(--bg); }
 .rb-glow { animation: rb-pulse 2.6s infinite; }
@@ -130,8 +131,9 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 /* Header */
 .rb-header {
   position: sticky;
-  z-index: 50;
+  z-index: 1000;
   top: 0;
+  width: 100%;
   border-bottom: 1px solid var(--ln);
   background: color-mix(in srgb, var(--bg) 90%, transparent);
   -webkit-backdrop-filter: blur(12px);
@@ -435,16 +437,32 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 .rb-faq-answer { max-width: 46em; margin: 12px 0 0; color: color-mix(in srgb,var(--tx) 78%,transparent); font-weight: 600; }
 
 /* Footer */
-.rb-footer { margin-top: 30px; border-top: 1px solid var(--ln); padding: 34px 0; }
-.rb-footer-content { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 14px 28px; }
-.rb-footer-content>p { margin: 0; color: color-mix(in srgb,var(--tx) 78%,transparent); font-size: 14px; font-weight: 700; }
-.rb-footer-content nav { display: flex; flex-wrap: wrap; gap: 12px 22px; }
-.rb-footer-content nav a { color: var(--tx); font-size: 13px; font-weight: 800; text-decoration: none; }
-.rb-footer-content nav a:hover { color: var(--sun); }
-.rb-footer-content small { grid-column: 1/-1; color: color-mix(in srgb,var(--tx) 65%,transparent); font-size: 12px; font-weight: 700; }
+.rb-footer { margin-top: 30px; border-top: 1px solid var(--ln); background: color-mix(in srgb,var(--pn) 55%,var(--bg)); padding: 54px 0 24px; }
+.rb-footer-content { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,.9fr) minmax(0,.8fr); gap: 34px 48px; }
+.rb-footer-intro { max-width: 380px; }
+.rb-footer-intro>p { margin: 18px 0; color: color-mix(in srgb,var(--tx) 72%,transparent); font-size: 15px; font-weight: 600; }
+.rb-footer-intro>a { color: var(--sun); font: 13px "DM Mono",monospace; text-decoration: none; }
+.rb-footer-services h2, .rb-footer-explore h2 { margin: 4px 0 14px; color: color-mix(in srgb,var(--tx) 55%,transparent); font: 12px "DM Mono",monospace; letter-spacing: .16em; text-transform: uppercase; }
+.rb-footer-services>div, .rb-footer-explore nav { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 18px; }
+.rb-footer-services a, .rb-footer-explore nav a, .rb-footer-bottom>a { color: var(--tx); font-size: 13px; font-weight: 800; text-decoration: none; transition: color .2s; }
+.rb-footer-services a:hover, .rb-footer-explore nav a:hover, .rb-footer-bottom>a:hover { color: var(--sun); }
+.rb-footer-bottom { display: flex; grid-column: 1/-1; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding-top: 20px; border-top: 1px solid var(--ln); }
+.rb-footer-bottom small { color: color-mix(in srgb,var(--tx) 60%,transparent); font-size: 12px; font-weight: 700; }
+.rb-footer-bottom>span { color: color-mix(in srgb,var(--tx) 65%,transparent); font-size: 12px; font-weight: 700; }
+.rb-footer-bottom em { color: var(--sun); font-family: "Instrument Serif",Georgia,serif; font-size: 16px; font-weight: 400; }
 
 /* Contact and legacy page surfaces: token colors only, retain their existing layout. */
 .rb-contact-form { border: 1px solid var(--ln); background: var(--pn); box-shadow: 0 5px 20px color-mix(in srgb,var(--bg) 40%,transparent); }
+.rb-contact-services, .rb-contact-format { min-width: 0; margin: 0; padding: 0; border: 0; }
+.rb-contact-services legend, .rb-contact-format legend { margin-bottom: 12px; color: var(--tx); font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+.rb-contact-services legend span { margin-left: 6px; color: color-mix(in srgb,var(--tx) 60%,transparent); font-size: 13px; font-weight: 500; letter-spacing: 0; }
+.rb-contact-service-options { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.rb-contact-service-option { display: flex; min-height: 48px; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--ln); border-radius: 8px; background: var(--bg); color: var(--tx); cursor: pointer; font-size: 14px; font-weight: 700; }
+.rb-contact-service-option:has(input:checked) { border-color: var(--sun); color: var(--sun); }
+.rb-contact-service-option input { width: 16px; height: 16px; flex: 0 0 auto; accent-color: var(--sun); }
+.rb-contact-plan { margin: 12px 0 0; color: var(--tl); font: 12px "DM Mono",monospace; }
+.rb-contact-service-details { display: grid; gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--ln); }
+.rb-contact-service-details h3 { margin: 0; font-size: 18px; }
 .rb-contact-input { width: 100%; height: 40px; border: 1px solid var(--ln); border-radius: 6px; background: var(--bg); padding: 0 12px; color: var(--tx); font: 14px "Syne",system-ui,sans-serif; }
 .rb-contact-input::placeholder { color: color-mix(in srgb,var(--tx) 50%,transparent); }
 .rb-contact-input:focus { border-color: var(--sun); outline: 2px solid var(--sun); outline-offset: 1px; }
@@ -453,6 +471,7 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 .rb-format-button.is-active { border-color: var(--sun); background: var(--sun); color: var(--bg); }
 .rb-contact-submit { width: 100%; margin-top: 32px; }
 .rb-contact-success, .rb-contact-error { margin-top: 16px; text-align: center; font-size: 14px; }
+.rb-contact-services>.rb-contact-error { margin-top: 10px; text-align: left; }
 .rb-contact-success { color: var(--tl); }
 .rb-contact-error { color: var(--red); }
 .whatsapp-bounce { animation: rb-bounce 2s ease-in-out infinite; }
@@ -461,11 +480,12 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 @media (max-width: 900px) {
   .rb-wrap { width: min(100% - 36px,700px); }
   .rb-menu { display: inline-flex; }
-  .rb-timecode { display: none; }
+  .rb-timecode { padding: 5px 8px; font-size: 11px; letter-spacing: .06em; }
   .rb-nav nav { position: absolute; top: 64px; right: -18px; left: -18px; display: none; flex-direction: column; align-items: stretch; gap: 14px; padding: 18px 24px; border-bottom: 1px solid var(--ln); background: var(--bg); }
   .rb-nav nav.open { display: flex; }
   .rb-nav nav a { width: fit-content; font-size: 13px; }
   .rb-hero-grid, .rb-video-service-grid { grid-template-columns: 1fr; }
+  .rb-contact-service-options { grid-template-columns: 1fr; }
   .rb-monitor { width: min(100%,640px); margin-inline: auto; }
   .rb-service-grid, .rb-pricing-grid, .rb-project-grid { grid-template-columns: 1fr; }
   .rb-cycle { grid-template-columns: repeat(2,minmax(0,1fr)); }
@@ -492,8 +512,9 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
   .rb-modal-card { gap: 16px; padding: 20px; }
   .rb-modal-actions { flex-direction: column; align-items: stretch; }
   .rb-modal-actions .rb-button { width: 100%; }
-  .rb-footer-content { grid-template-columns: 1fr; }
-  .rb-footer-content small { grid-column: 1; }
+  .rb-footer-content { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 20px; }
+  .rb-footer-intro { grid-column: 1/-1; }
+  .rb-footer-bottom { grid-column: 1/-1; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

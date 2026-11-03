@@ -1,20 +1,35 @@
+import { useState } from "react";
 import PageHero from "../components/PageHero";
 import Pricing from "../components/Pricing";
 import PageMetadata from "../components/PageMetadata";
-import { Link } from "react-router-dom";
 
+const tabs = [
+  { id: "video", label: "V1 · Video editing" },
+  { id: "website", label: "W1 · Websites" },
+  { id: "social", label: "S1 · Social media" },
+];
 
 const Services = () => {
+  const [active, setActive] = useState("video");
+
   return (
     <>
       <PageMetadata title="Services & Pricing | Video Editing, Social Media Management & Website Development | TheReelBazar" description="Explore TheReelBazar video editing, website development and social media management packages, pricing, and add-ons." />
       <PageHero eyebrow="Services & pricing" title="Everything your brand needs to be" accent="seen." description="Pick one service or combine all three. Clear packages, honest prices, no hidden surprises." />
-      <nav className="rb-service-jumps rb-wrap" aria-label="Jump to a service">
-        <Link className="rb-button rb-outline" to="#video">V1 · Video editing</Link>
-        <Link className="rb-button rb-outline" to="#website">W1 · Websites</Link>
-        <Link className="rb-button rb-outline" to="#social">S1 · Social media</Link>
+      <nav className="rb-service-jumps rb-wrap" aria-label="Choose a service">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            className={`rb-button rb-outline${active === tab.id ? " is-active" : ""}`}
+            aria-pressed={active === tab.id}
+            onClick={() => setActive(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
       </nav>
-      <Pricing />
+      <Pricing active={active} />
     </>
   );
 };

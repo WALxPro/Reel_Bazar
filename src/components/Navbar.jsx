@@ -2,24 +2,26 @@ import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const links = [{ name: "Home", path: "/" }, { name: "Services", path: "/services" }, { name: "Portfolio", path: "/case-study" }, { name: "About", path: "/about-us" }, { name: "Contact", path: "/contact" }];
+const links = [{ name: "Home", path: "/" }, { name: "Services", path: "/services" }, { name: "Portfolio", path: "/case-study" }, { name: "About", path: "/about-us" }, { name: "Contact", path: "/contact" }, { name: "FAQ", path: "/faq" }];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("00:00:00:00");
   useEffect(() => {
+    const startedAt = Date.now();
     const update = () => {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      const frames = Math.floor((max ? scrollY / max : 0) * 92 * 24);
-      setTime(`00:${String(Math.floor(frames / 1440)).padStart(2, "0")}:${String(Math.floor(frames / 24) % 60).padStart(2, "0")}:${String(frames % 24).padStart(2, "0")}`);
+      const totalFrames = Math.floor(((Date.now() - startedAt) / 1000) * 24);
+      const hours = Math.floor(totalFrames / 86400);
+      const minutes = Math.floor(totalFrames / 1440) % 60;
+      const seconds = Math.floor(totalFrames / 24) % 60;
+      const frames = totalFrames % 24;
+      setTime(
+        `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}:${String(frames).padStart(2, "0")}`,
+      );
     };
     update();
-    addEventListener("scroll", update, { passive: true });
-    addEventListener("resize", update);
-    return () => {
-      removeEventListener("scroll", update);
-      removeEventListener("resize", update);
-    };
+    const intervalId = window.setInterval(update, 1000 / 24);
+    return () => window.clearInterval(intervalId);
   }, []);
 
   return (
@@ -37,7 +39,6 @@ export default function Navbar() {
         </nav>
         <div className="rb-nav-right">
           <span className="rb-timecode" aria-label={`Timecode ${time}`}>{time}</span>
-          <Link className="rb-button rb-nav-cta rb-glow" to="/contact">Get a quote</Link>
           <button
             type="button"
             className="rb-menu"

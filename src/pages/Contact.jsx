@@ -2,30 +2,43 @@ import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Mail, Clock, CheckCircle2 } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
-import Button from "../components/Button";
+import { useSearchParams } from "react-router-dom";
 import PageHero from "../components/PageHero";
 
 const CONTACT_EMAIL = "contact@thereelbazar.com";
 const INSTAGRAM_HANDLE = "@_thereelbazar";
 
 const inputClasses = "rb-contact-input";
+const serviceOptions = [
+  { value: "Video editing", label: "Video editing" },
+  { value: "Website development", label: "Website development" },
+  { value: "Social media management", label: "Social media management" },
+];
 
 const Field = ({ label, children }) => (
   <label className="flex w-full flex-col gap-2">
-    <p className="text-[18px] tracking-[-0.02em] text-white">{label}</p>
+    <span className="text-[18px] tracking-[-0.02em] text-white">{label}</span>
 
     {children}
   </label>
 );
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const requestedPlan = searchParams.get("plan") || "";
+  const initialServices = serviceOptions
+    .filter(({ value }) => requestedPlan.toLowerCase().includes(value.toLowerCase()))
+    .map(({ value }) => value);
   const [form, setForm] = useState({
     name: "",
     email: "",
     company: "",
-    service: "Short-Form Video Editing",
+    services: initialServices,
     videos: 1,
     format: "Short Form",
+    websiteType: "",
+    websitePages: "",
+    socialPlatforms: "",
     details: "",
     budget: "",
   });
@@ -40,8 +53,22 @@ const Contact = () => {
     }));
   };
 
+  const toggleService = (service) => {
+    setForm((prev) => ({
+      ...prev,
+      services: prev.services.includes(service)
+        ? prev.services.filter((item) => item !== service)
+        : [...prev.services, service],
+    }));
+    setStatus("");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (form.services.length === 0) {
+      setStatus("service-required");
+      return;
+    }
 
     setSending(true);
     setStatus("");
@@ -50,9 +77,15 @@ const Contact = () => {
       name: form.name,
       email: form.email,
       company: form.company,
-      service: form.service,
+      service: form.services.join(", "),
+      services: form.services.join(", "),
+      selected_services: form.services.join(", "),
+      plan: requestedPlan,
       videos: form.videos,
       format: form.format,
+      website_type: form.websiteType,
+      website_pages: form.websitePages,
+      social_platforms: form.socialPlatforms,
       details: form.details,
       budget: form.budget,
     };
@@ -73,9 +106,12 @@ const Contact = () => {
         name: "",
         email: "",
         company: "",
-        service: "Short-Form Video Editing",
+        services: [],
         videos: 1,
         format: "Short Form",
+        websiteType: "",
+        websitePages: "",
+        socialPlatforms: "",
         details: "",
         budget: "",
       });
@@ -142,8 +178,8 @@ const Contact = () => {
               <Clock size={18} className="mt-[2px] shrink-0 text-white/60" />
 
               <p className="text-sm leading-relaxed text-white/60">
-                We reply to every request within one business day, including a
-                footage checklist so editing can start immediately.
+                We reply to every request within one business day with next steps
+                tailored to the services you need.
               </p>
             </div>
           </div>
@@ -156,10 +192,10 @@ const Contact = () => {
 
             <ul className="mt-4 flex flex-col gap-3">
               {[
-                "Dedicated editor for your brand",
-                "Unlimited revisions until you're happy",
-                "Fast turnaround, most edits in 48–72h",
-                "Direct communication, no middlemen",
+                "A clear plan for your selected services",
+                "Transparent scope, timelines, and pricing",
+                "One creative team across video, web, and social",
+                "Direct communication from start to finish",
               ].map((item) => (
                 <li
                   key={item}
@@ -218,61 +254,91 @@ const Contact = () => {
               />
             </Field>
 
-            {/* SERVICE */}
-            <Field label="Service Required">
-              <select
-                value={form.service}
-                onChange={update("service")}
-                className={`${inputClasses} cursor-pointer`}
-              >
-                <option>Short-Form Video Editing</option>
-                <option>Long-Form Video Editing</option>
-                <option>Explainer Video</option>
-                <option>Social Media Management</option>
-                <option>Website Development</option>
-                <option>Full Content Management</option>
-              </select>
-            </Field>
-
-            {/* NUMBER OF VIDEOS */}
-            <Field label="Number of Videos">
-              <input
-                type="number"
-                min={1}
-                value={form.videos}
-                onChange={update("videos")}
-                className={inputClasses}
-              />
-            </Field>
-
-            {/* FORMAT */}
-            <Field label="Format">
-              <div className="flex h-10 gap-3">
-                {["Short Form", "Long Form"].map((opt) => (
-                  <button
-                    type="button"
-                    key={opt}
-                    onClick={() =>
-                      setForm((prev) => ({
-                        ...prev,
-                        format: opt,
-                      }))
-                    }
-                    className={`rb-format-button ${form.format === opt ? "is-active" : ""}`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </Field>
           </div>
+
+          <fieldset className="rb-contact-services mt-6">
+            <legend>What do you need? <span>Select all that apply.</span></legend>
+            <div className="rb-contact-service-options">
+              {serviceOptions.map(({ value, label }) => (
+                <label key={value} className="rb-contact-service-option">
+                  <input
+                    type="checkbox"
+                    value={value}
+                    checked={form.services.includes(value)}
+                    onChange={() => toggleService(value)}
+                  />
+                  <span>{label}</span>
+                </label>
+              ))}
+            </div>
+            {requestedPlan && <p className="rb-contact-plan">Enquiring about: {requestedPlan}</p>}
+            {status === "service-required" && (
+              <p className="rb-contact-error" role="alert">Please select at least one service.</p>
+            )}
+          </fieldset>
+
+          {form.services.includes("Video editing") && (
+            <div className="rb-contact-service-details">
+              <h3>Video editing details</h3>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <Field label="Videos per month">
+                  <input type="number" min={1} value={form.videos} onChange={update("videos")} className={inputClasses} />
+                </Field>
+                <fieldset className="rb-contact-format">
+                  <legend>Video format</legend>
+                  <div className="flex h-10 gap-3">
+                    {["Short Form", "Long Form"].map((opt) => (
+                      <button
+                        type="button"
+                        key={opt}
+                        aria-pressed={form.format === opt}
+                        onClick={() => setForm((prev) => ({ ...prev, format: opt }))}
+                        className={`rb-format-button ${form.format === opt ? "is-active" : ""}`}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          )}
+
+          {form.services.includes("Website development") && (
+            <div className="rb-contact-service-details">
+              <h3>Website details</h3>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <Field label="Website type">
+                  <select value={form.websiteType} onChange={update("websiteType")} className={`${inputClasses} cursor-pointer`}>
+                    <option value="">Choose a type</option>
+                    <option>Business website</option>
+                    <option>Portfolio / landing page</option>
+                    <option>Online store</option>
+                    <option>Other / not sure</option>
+                  </select>
+                </Field>
+                <Field label="Approx. number of pages">
+                  <input type="number" min={1} placeholder="e.g. 5" value={form.websitePages} onChange={update("websitePages")} className={inputClasses} />
+                </Field>
+              </div>
+            </div>
+          )}
+
+          {form.services.includes("Social media management") && (
+            <div className="rb-contact-service-details">
+              <h3>Social media details</h3>
+              <Field label="Platforms you want help with">
+                <input type="text" placeholder="Instagram, TikTok, Facebook..." value={form.socialPlatforms} onChange={update("socialPlatforms")} className={inputClasses} />
+              </Field>
+            </div>
+          )}
 
           {/* PROJECT DETAILS */}
           <div className="mt-6">
             <Field label="Project Details">
               <textarea
                 rows={5}
-                placeholder="Video length, style references, deadlines, where it will be published..."
+                placeholder="Goals, references, deadlines, current website or social links, and anything else we should know..."
                 value={form.details}
                 onChange={update("details")}
                 className="rb-contact-input rb-contact-textarea"
@@ -310,7 +376,7 @@ const Contact = () => {
           )}
 
           {status === "error" && (
-            <p className="rb-contact-error">
+            <p className="rb-contact-error" role="alert">
               Something went wrong. Please try again.
             </p>
           )}
