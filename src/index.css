@@ -358,6 +358,8 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 
 /* Play button + progress bar: media ke upar */
 .rb-video-play { position: absolute; z-index: 2; top: 50%; left: 50%; display: grid; width: 48px; height: 48px; transform: translate(-50%, -50%); place-items: center; border: 1px solid color-mix(in srgb, var(--tx) 70%, transparent); border-radius: 50%; background: color-mix(in srgb, var(--tx) 88%, transparent); color: var(--bg); font-size: 15px; pointer-events: none; }
+.rb-video-sound { position: absolute; z-index: 8; top: 12px; right: 12px; display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid var(--ln); border-radius: 50%; background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--tx); cursor: pointer; transition: border-color .2s,color .2s,transform .2s; }
+.rb-video-sound:hover, .rb-video-sound[aria-pressed="true"] { transform: scale(1.06); border-color: var(--sun); color: var(--sun); }
 .rb-video-progress { position: absolute; z-index: 2; right: 10px; bottom: 9px; left: 10px; height: 4px; border-radius: 99px; background: color-mix(in srgb, var(--bg) 65%, transparent); pointer-events: none; }
 .rb-video-progress i { display: block; width: 38%; height: 100%; border-radius: inherit; background: var(--red); }
 

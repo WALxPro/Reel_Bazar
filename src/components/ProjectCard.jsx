@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 import ProjectModal from "./ProjectModal";
 
 const typeClass = {
@@ -33,6 +34,7 @@ export default function ProjectCard({ project }) {
   const cardRef = useRef(null);
   const [nearViewport, setNearViewport] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
 
   const isVideo = project.type === "Video editing";
@@ -79,12 +81,30 @@ export default function ProjectCard({ project }) {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    video.muted = muted;
     if (playing) {
       video.play().catch(() => setPlaying(false));
     } else {
       video.pause();
     }
-  }, [playing, nearViewport]);
+  }, [playing, nearViewport, muted]);
+
+  const toggleSound = (event) => {
+    event.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+
+    const nextMuted = !muted;
+    video.muted = nextMuted;
+    setMuted(nextMuted);
+    if (!nextMuted) {
+      video.play().catch(() => {
+        video.muted = true;
+        setMuted(true);
+        setPlaying(false);
+      });
+    }
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" || event.key === " ") {
@@ -127,8 +147,21 @@ export default function ProjectCard({ project }) {
           {!isVideo && !project.thumbnail && project.type === "Websites" && <WebsiteMock />}
           {!isVideo && !project.thumbnail && project.type === "Social media" && <SocialMock />}
 
-          {isVideo && <span className="rb-video-play" aria-hidden="true">▶</span>}
-          {isVideo && <span className="rb-video-progress" aria-hidden="true"><i /></span>}
+          
+          {isVideo && hasVideo && (
+            <button
+              type="button"
+              className="rb-video-sound"
+              onClick={toggleSound}
+              onKeyDown={(event) => event.stopPropagation()}
+              aria-label={muted ? `Turn on sound for ${project.brand}` : `Mute ${project.brand}`}
+              aria-pressed={!muted}
+              title={muted ? "Turn sound on" : "Mute video"}
+            >
+              {muted ? <VolumeX aria-hidden="true" size={18} /> : <Volume2 aria-hidden="true" size={18} />}
+            </button>
+          )}
+          {/* {isVideo && <span className="rb-video-progress" aria-hidden="true"><i /></span>} */}
         </div>
 
         <div className="rb-project-info">

@@ -20,7 +20,7 @@ export default function ProjectModal({ project, onClose }) {
         <button type="button" className="rb-close" onClick={onClose} aria-label="Close project">×</button>
         <div className="rb-modal-media">
           {project.videoUrl ? (
-            <video src={project.videoUrl} poster={project.thumbnail} controls autoPlay muted playsInline preload="metadata" />
+            <video src={project.videoUrl} poster={project.thumbnail} controls autoPlay playsInline preload="metadata" />
           ) : project.type === "Websites" ? (
             <span className="rb-browser-mock" aria-hidden="true"><span className="rb-browser-bar"><i /><i /><i /><u /></span><span className="rb-browser-hero"><i /><i /></span><span className="rb-browser-blocks"><i /><i /><i /></span></span>
           ) : (
