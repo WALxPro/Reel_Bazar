@@ -1,154 +1,68 @@
-import React from "react";
 import { Reveal } from "./Motion";
 
-const AboutSection = () => {
+const services = [
+  "Video editing",
+  "Social media management",
+  "Website development",
+];
+
+export default function AboutSection() {
   return (
-    <section
-      className="
-        w-full
-        bg-black
-        px-5
-        py-16
-        sm:px-8
-        md:px-12
-        lg:px-20
-        lg:py-24
-        
-      "
-    >
-      {/* Top Content */}
-      <div
-        className="
-          mx-auto
-          max-w-6xl
-          flex
-          flex-col
-          gap-10
-          lg:flex-row
-          lg:items-center
-          lg:gap-16
-        "
-      >
-        {/* Left Content */}
-        <div
-          className="
-            w-full
-            lg:w-[38%]
-          "
-        >
-          <Reveal variant="heading"><h2
-            className="
-              font-['Instrument_Serif']
-              text-4xl
-              italic
-              font-medium
-              text-white
-              sm:text-5xl
-              lg:text-[38px]
-            "
-          >
-            About Us
-          </h2></Reveal>
+    <section className="rb-section rb-about">
+      <div className="rb-wrap">
+        <div className="rb-about-main">
+          <div className="rb-about-copy">
+            <Reveal variant="heading">
+              <p className="rb-eyebrow">About the studio</p>
+              <h2>One team. Three ways to <em>stand out.</em></h2>
+            </Reveal>
 
-          <Reveal variant="paragraph" delay={0.1}><p
-            className="
-    mt-6
-    text-sm
-    leading-relaxed
-    text-white/85
-    sm:text-base
-    lg:text-lg
-  "
-          >
-            At TheReelBazar, we believe every video has a story waiting to be
-            discovered. Our mission is simple: transform raw footage into
-            high-impact visual content that captures attention and builds
-            stronger connections between brands and their audiences.
-            <br />
-            
-            In a digital world where attention is limited, great editing makes
-            the difference. We combine creative storytelling, precise timing,
-            and modern editing techniques to create videos that feel engaging,
-            authentic, and designed for today's platforms.
-            
-            <br />
-            From short-form reels and social media content to advertisements and
-            branded videos, we help creators, businesses, and brands turn their
-            ideas into content that people want to watch.
-            <br />
-            
-            At TheReelBazar, every cut has a purpose. We don't just edit videos,
-            we craft visual experiences that help brands stand out and leave a
-            lasting impression.
-          </p></Reveal>
+            <Reveal variant="paragraph" delay={0.1}>
+              <div className="rb-about-description">
+                <p>
+                  TheReelBazar is a creative studio helping brands show up
+                  confidently wherever their audience finds them. We bring
+                  video, social media and web together under one roof, making
+                  every part of your online presence feel connected.
+                </p>
+                <p>
+                  From scroll-stopping edits and thoughtful social media
+                  management to fast, search-friendly websites, we turn your
+                  ideas into useful creative work built around your goals.
+                </p>
+              </div>
+            </Reveal>
+
+            <ul className="rb-about-services" aria-label="Our services">
+              {services.map((service) => <li key={service}>{service}</li>)}
+            </ul>
+          </div>
+
+          <div className="rb-about-media">
+            <Reveal variant="image">
+              <video
+                src="/about-section.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-label="TheReelBazar creative studio showreel"
+              />
+            </Reveal>
+          </div>
         </div>
 
-        {/* Video */}
-        <div
-          className="
-            w-full
-            lg:w-[62%]
-          "
-        >
-          <Reveal variant="image"><video
-            src="/about-section.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="
-              h-[280px]
-              w-full
-              rounded-lg
-                            object-cover
-              shadow-2xl
-              sm:h-[380px]
-              md:h-[480px]
-              lg:h-[500px]
-            "
-          /></Reveal>
-        </div>
-      </div>
-
-      {/* Bottom Text */}
-      <div
-        className="
-          mx-auto
-          mt-12
-          max-w-6xl
-          lg:mt-16
-        "
-      >
-       <Reveal variant="paragraph"><p
-  className="
-    text-sm
-    leading-relaxed
-    text-white/85
-    sm:text-base
-    lg:text-lg
-  "
->
-  Our approach goes beyond traditional video editing. We take the time to
-  understand your brand, audience, and goals to create content that feels
-  intentional and delivers results.
-
-  <br />
-  <br />
-
-  Whether you're building a personal brand, growing a business, or creating
-  content at scale, TheReelBazar provides the creative expertise needed to
-  turn ideas into memorable videos.
-
-  <br />
-  <br />
-
-  <strong className="text-white italic">
-    TheReelBazar  Where ideas become videos people remember.
-  </strong>
-</p></Reveal>
+        <Reveal variant="paragraph">
+          <div className="rb-about-outro">
+            <span className="rb-about-outro-mark" aria-hidden="true">◆</span>
+            <p>
+              Good creative should do more than look polished. It should make
+              your brand easier to discover, trust and remember.
+              <strong> TheReelBazar — ideas made visible, from first frame to final click.</strong>
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
-};
-
-export default AboutSection;
+}

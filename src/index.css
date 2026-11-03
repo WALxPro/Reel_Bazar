@@ -512,6 +512,20 @@ h3 em {
   padding-block: 28px 0;
 }
 
+/* About section */
+.rb-about-main { display: grid; grid-template-columns: minmax(0,.82fr) minmax(0,1.18fr); align-items: center; gap: clamp(32px,6vw,40px); }
+.rb-about-copy h2 { max-width: 11em; }
+.rb-about-description { display: grid; gap: 16px; margin-top: 24px; color: color-mix(in srgb,var(--tx) 78%,transparent); font-size: 16px; font-weight: 600; line-height: 1.8; }
+.rb-about-description p { margin: 0; }
+.rb-about-services { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0 0; padding: 0; list-style: none; }
+.rb-about-services li { padding: 7px 12px; border: 1px solid var(--ln); border-radius: 99px; background: var(--pn); color: var(--sun); font: 11px "DM Mono",monospace; }
+.rb-about-media { overflow: hidden; border: 1px solid var(--ln); border-radius: 16px; background: var(--pn); }
+.rb-about-media video { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.rb-about-outro { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; margin-top: clamp(36px,5vw,64px); padding: 24px 28px; border: 1px solid var(--ln); border-radius: 14px; background: var(--pn); }
+.rb-about-outro-mark { padding-top: 3px; color: var(--red); font-size: 18px; }
+.rb-about-outro p { margin: 0; color: color-mix(in srgb,var(--tx) 78%,transparent); font-size: 16px; font-weight: 600; line-height: 1.7; }
+.rb-about-outro strong { color: var(--tx); }
+
 /* Home hero */
 .rb-hero {
   position: relative;
@@ -2291,6 +2305,12 @@ h3 em {
   .rb-video-service-grid {
     grid-template-columns: 1fr;
   }
+  .rb-about-main {
+    grid-template-columns: 1fr;
+  }
+  .rb-about-media video {
+    aspect-ratio: 16/10;
+  }
   .rb-contact-service-options {
     grid-template-columns: 1fr;
   }
@@ -2337,6 +2357,14 @@ h3 em {
 @media (max-width: 560px) {
   .rb-wrap {
     width: min(100% - 32px, 500px);
+  }
+  .rb-about-description,
+  .rb-about-outro p {
+    font-size: 14px;
+  }
+  .rb-about-outro {
+    gap: 10px;
+    padding: 18px;
   }
   .rb-brand {
     gap: 8px;

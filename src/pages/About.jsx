@@ -7,7 +7,7 @@ import Testimonials from '../components/Testimonials'
 const About = () => {
   return (
     <>
-    <PageHero eyebrow="About the studio" title="Ideas made" accent="visible." description="TheReelBazar is a hands-on creative studio for content, community and the web." video="/about.mp4" />
+    <PageHero eyebrow="About the studio" title="Ideas made" accent="visible." description="One creative team for video editing, social media management and website development." video="/about.mp4" />
     <AboutSection/>
     <CTASection/>
    
