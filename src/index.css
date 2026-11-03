@@ -87,7 +87,6 @@ h6 {
   font-family: "Syne", system-ui, sans-serif;
   font-weight: 800;
   letter-spacing: -0.04em;
-  margin-bottom: 30px !important;
 }
 h1 em,
 h2 em,
@@ -97,7 +96,6 @@ h3 em {
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0;
-  margin-bottom: 30px !important;
 }
 
 /* Keep legacy utility-driven pages on the same tokens without changing their layout. */
@@ -587,7 +585,7 @@ h3 em {
   max-width: 13ch;
   margin: 0;
   color: var(--tx);
-  font-size: clamp(38px, 5.6vw, 80px);
+  font-size: clamp(38px, 5.6vw, 60px);
   font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.045em;
@@ -1339,7 +1337,7 @@ h3 em {
 .rb-project-thumbnail {
   position: relative;
   display: grid;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   padding: 18px;
   place-items: center;
@@ -1936,6 +1934,7 @@ h3 em {
 /* FAQ accordion */
 .rb-faq-section {
   padding: clamp(52px, 7vw, 92px) 0;
+  
 }
 .rb-faq-section > .mx-auto {
   align-items: start;
@@ -2448,5 +2447,561 @@ h3 em {
   }
   .motion-word > span {
     opacity: 1;
+  }
+}
+
+/* Compact, consistent layouts for phones and small tablets. */
+@media (max-width: 900px) {
+  .rb-section {
+    padding-block: clamp(44px, 8vw, 68px);
+  }
+
+  .rb-project-grid,
+  .rb-reels .rb-project-grid,
+  .rb-home-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .rb-project-thumbnail {
+    aspect-ratio: 4 / 3;
+  }
+
+  .rb-contact-layout {
+    gap: 28px;
+  }
+
+  .rb-contact-layout .rb-contact-form {
+    grid-row: 1;
+  }
+
+  .rb-contact-layout .rb-contact-info {
+    grid-row: 2;
+  }
+}
+
+@media (min-width: 901px) {
+  .rb-project-grid,
+  .rb-reels .rb-project-grid,
+  .rb-home-project-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .rb-wrap {
+    width: min(100% - 32px, 500px);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.035em;
+  }
+
+  .rb-section {
+    padding-block: 44px;
+  }
+
+  .rb-section h2 {
+    font-size: clamp(27px, 7.4vw, 34px);
+    line-height: 1.08;
+  }
+
+  .rb-eyebrow,
+  .rb-page-hero__inner > span {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .rb-subtitle {
+    margin: 12px 0 22px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .rb-button {
+    min-height: 40px;
+    padding: 10px 16px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  .rb-button.rb-outline {
+    margin-left: 0;
+  }
+
+  .rb-page-hero {
+    min-height: 0;
+    padding: 64px 16px 76px;
+  }
+
+  .rb-page-hero h1 {
+    margin: 14px 0;
+    font-size: clamp(30px, 8.3vw, 39px);
+    line-height: 1.05;
+  }
+
+  .rb-page-hero p {
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .rb-page-hero a {
+    gap: 8px;
+    padding: 7px 8px 7px 14px;
+    font-size: 10px;
+  }
+
+  .rb-page-hero a b {
+    width: 24px;
+  }
+
+  .rb-page-hero__tape {
+    bottom: 14px;
+    font-size: 10px;
+  }
+
+  .rb-hero {
+    padding: 32px 0 46px;
+  }
+
+  .rb-hero h1 {
+    font-size: clamp(31px, 8.6vw, 38px);
+    line-height: 1.02;
+  }
+
+  .rb-hero-grid {
+    gap: 26px;
+  }
+
+  .rb-lead {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .rb-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .rb-actions .rb-button {
+    width: auto;
+  }
+
+  .rb-project-grid,
+  .rb-reels .rb-project-grid,
+  .rb-home-project-grid,
+  .rb-pricing-grid,
+  .rb-service-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .rb-project-thumbnail {
+    aspect-ratio: 4 / 3;
+    padding: 12px;
+  }
+
+  .rb-project-info {
+    gap: 4px;
+    padding: 12px 14px 14px;
+  }
+
+  .rb-project-info h3 {
+    font-size: 17px;
+  }
+
+  .rb-project-info p {
+    font-size: 13px;
+  }
+
+  .rb-project-filters {
+    gap: 8px;
+    margin: 20px 0;
+  }
+
+  .rb-project-filters button {
+    padding: 8px 11px;
+    font-size: 10px;
+  }
+
+  .rb-home-work__action {
+    margin-top: 22px;
+  }
+
+  .rb-contact-section {
+    padding: 36px 0 48px !important;
+  }
+
+  .rb-contact-layout {
+    gap: 24px;
+  }
+
+  .rb-contact-form {
+    padding: 16px !important;
+    border-radius: 12px !important;
+  }
+
+  .rb-contact-form > .grid {
+    gap: 16px;
+  }
+
+  .rb-contact-info {
+    gap: 24px;
+  }
+
+  .rb-contact-info h2 {
+    margin-top: 10px !important;
+    font-size: 28px !important;
+    line-height: 1.08 !important;
+  }
+
+  .rb-contact-info p {
+    line-height: 1.55;
+  }
+
+  .rb-contact-service-options {
+    gap: 8px;
+  }
+
+  .rb-contact-service-option {
+    min-height: 44px;
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .rb-contact-service-details {
+    margin-top: 18px;
+    padding-top: 16px;
+  }
+
+  .rb-contact-submit {
+    min-height: 44px;
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .rb-brand {
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .rb-brand-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .rb-nav {
+    gap: 8px;
+  }
+
+  .rb-timecode {
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+
+  .rb-hero h1 {
+    font-size: 30px;
+  }
+
+  .rb-contact-form {
+    padding: 14px !important;
+  }
+
+  .rb-modal-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rb-modal {
+    place-items: center;
+    padding: max(8px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom));
+  }
+
+  .rb-modal-card {
+    display: grid;
+    width: 100%;
+    max-height: calc(100dvh - 16px);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 12px;
+    border-radius: 14px;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rb-modal-media {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 9px;
+  }
+
+  .rb-modal-media > video,
+  .rb-modal video,
+  .rb-modal img {
+    width: 100%;
+    height: 100%;
+    max-height: 34dvh;
+    object-fit: contain;
+  }
+
+  .rb-modal-content {
+    min-width: 0;
+    padding: 0 2px 2px;
+  }
+
+  .rb-modal-content > .rb-mono {
+    margin-bottom: 6px;
+    font-size: 10px;
+  }
+
+  .rb-modal-content h2 {
+    margin: 0 0 8px;
+    font-size: clamp(22px, 7vw, 28px);
+    line-height: 1.1;
+  }
+
+  .rb-modal-content > p:not(.rb-mono) {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .rb-modal-content h3 {
+    margin-top: 16px;
+    font-size: 11px;
+  }
+
+  .rb-modal-card ul {
+    gap: 6px;
+    margin: 8px 0 14px;
+  }
+
+  .rb-modal-card li {
+    font-size: 13px;
+  }
+
+  .rb-modal-actions {
+    margin-top: 4px;
+  }
+
+  .rb-modal-actions .rb-button {
+    width: 100%;
+    min-height: 42px;
+  }
+
+  .rb-close {
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    justify-self: end;
+    width: 34px;
+    height: 34px;
+    margin: -2px -2px -48px auto;
+    font-size: 21px;
+    backdrop-filter: blur(8px);
+  }
+}
+
+@media (max-width: 380px) {
+  .rb-modal {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .rb-modal-card {
+    max-height: calc(100dvh - 12px);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .rb-modal-media > video,
+  .rb-modal video,
+  .rb-modal img {
+    max-height: 30dvh;
+  }
+}
+
+@media (max-width: 600px) {
+  .rb-button,
+  .rb-modal-actions .rb-button,
+  .rb-price-button,
+  .rb-service-card .rb-button {
+    min-height: 36px;
+    padding: 8px 12px;
+    font-size: 10px;
+    letter-spacing: 0.035em;
+  }
+
+  .rb-project-type,
+  .rb-card-strip,
+  .rb-price-card > .rb-mono,
+  .rb-popular,
+  .rb-delivery,
+  .rb-build-steps article > span,
+  .rb-progress-label {
+    font-size: 9px;
+  }
+
+  .rb-project-info h3,
+  .rb-service-card h3,
+  .rb-price-card h3,
+  .rb-build-steps h4,
+  .rb-step h3,
+  .rb-feature-card h3 {
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .rb-project-info p,
+  .rb-service-card__body > p,
+  .rb-service-card li,
+  .rb-price-card li,
+  .rb-video-checklist li,
+  .rb-build-steps p,
+  .rb-step p,
+  .rb-feature-card p,
+  .rb-modal-card li,
+  .rb-addons span,
+  .rb-cycle > div {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .rb-service-card__body,
+  .rb-price-card {
+    padding: 18px 16px;
+  }
+
+  .rb-card-strip {
+    padding: 7px 12px;
+  }
+
+  .rb-price {
+    margin: 10px 0 4px;
+    font-size: 42px;
+  }
+
+  .rb-price small {
+    font-size: 10px;
+  }
+
+  .rb-price-card ul,
+  .rb-service-card ul {
+    gap: 6px;
+    margin: 12px 0 16px;
+  }
+
+  .rb-price-card li,
+  .rb-service-card li {
+    font-weight: 600;
+  }
+
+  .rb-price-card li::before,
+  .rb-service-card li::before {
+    margin-right: 7px;
+    font-size: 9px;
+  }
+
+  .rb-video-checklist__body {
+    padding: 16px;
+  }
+
+  .rb-video-checklist strong {
+    font-size: 11px;
+  }
+
+  .rb-addons {
+    padding: 14px;
+  }
+
+  .rb-addons h3,
+  .rb-subheading {
+    font-size: 11px;
+  }
+
+  .rb-cycle > div {
+    padding: 10px 6px;
+    font-weight: 700;
+  }
+
+  .rb-build-steps article {
+    padding: 14px;
+  }
+
+  .rb-testimonial-card {
+    min-height: 200px;
+    padding: 18px;
+  }
+
+  .rb-testimonial-copy {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .rb-testimonial-footer strong {
+    font-size: 12px;
+  }
+
+  .rb-testimonial-role,
+  .rb-testimonial-service {
+    font-size: 9px;
+  }
+
+  .rb-testimonial-footer img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .rb-step > span {
+    font-size: 11px;
+  }
+
+  .rb-step {
+    padding-left: 40px;
+  }
+
+  .rb-faq-item {
+    padding: 14px 16px;
+  }
+
+  .rb-faq-question > span:first-child {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .rb-faq-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 20px;
+  }
+
+  .rb-faq-answer {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .rb-contact-service-option {
+    font-size: 12px;
+  }
+
+  .rb-contact-form .rb-contact-input,
+  .rb-contact-form label > span {
+    font-size: 13px;
+  }
+
+  .rb-format-button,
+  .rb-project-filters button {
+    font-size: 10px;
   }
 }

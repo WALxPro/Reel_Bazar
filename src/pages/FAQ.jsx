@@ -14,7 +14,7 @@ const faqs = [
     answer:
       "TheReelBazar offers video editing, social media management and website development. Choose one service or combine all three with a bundle quote.",
   },
- 
+
   {
     question: "How do I send my footage?",
     answer:
@@ -40,80 +40,80 @@ const faqs = [
     answer:
       "Send a quote request through the contact form or email contact@thereelbazar.com. We reply with pricing, a start date and a footage checklist within one business day.",
   },
-  
-
 ];
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <><PageHero eyebrow="Good to know" title="Questions," accent="answered." description="The practical details behind a smooth creative partnership." /><section className="rb-section rb-faq-section">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.3fr]">
-        {/* Left */}
-        <div className="flex flex-col gap-6">
-          <p className="rb-eyebrow">Project bin</p>
+    <>
+      <PageHero
+        eyebrow="Good to know"
+        title="Questions,"
+        accent="answered."
+        description="The practical details behind a smooth creative partnership."
+      />
+      <section className="rb-section rb-faq-section">
+        <div className="mx-auto px-3 grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.3fr]">
+          {/* Left */}
+          <div className="flex flex-col gap-6">
+            <p className="rb-eyebrow">Project bin</p>
 
-          <h2>Good to <em>know.</em></h2>
+            <h2>
+              Good to <em>know.</em>
+            </h2>
 
-          <div className="relative overflow-hidden rounded-2xl border border-white/10">
-           <video
-  src="/fag.mp4"
-  autoPlay
-  loop
-  muted
-  playsInline
-  className="h-[480px] w-full object-cover"
-/>
-
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-black/80 to-transparent p-5">
-              <p className="text-sm font-medium leading-snug text-white">
-                Have a question?
-                <br />
-                Let's discuss it now!
-              </p>
-
-    
-              <Button text="Book an appointment" to="/contact" />
+            <div className="relative overflow-hidden rounded-2xl border border-white/10">
+              <video
+                src="/fag.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-[480px] w-full object-cover"
+              />
             </div>
           </div>
-        </div>
 
-        {/* Right — accordion */}
-        <div className="flex flex-col gap-4">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
+          {/* Right — accordion */}
+          <div className="flex flex-col gap-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
 
-            return (
-              <div
-                key={faq.question}
-                className={`rb-faq-item ${isOpen ? "is-open" : ""}`}
-              >
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-answer-${index}`}
-                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="rb-faq-question"
+              return (
+                <div
+                  key={faq.question}
+                  className={`rb-faq-item ${isOpen ? "is-open" : ""}`}
                 >
-                  <span>
-                    {faq.question}
-                  </span>
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
+                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                    className="rb-faq-question"
+                  >
+                    <span>{faq.question}</span>
 
-                  <span className={`rb-faq-icon ${isOpen ? "is-open" : ""}`} aria-hidden="true">{isOpen ? <X size={20} /> : <Plus size={20} />}</span>
-                </button>
+                    <span
+                      className={`rb-faq-icon ${isOpen ? "is-open" : ""}`}
+                      aria-hidden="true"
+                    >
+                      {isOpen ? <X size={20} /> : <Plus size={20} />}
+                    </span>
+                  </button>
 
-                {isOpen && (
-                  <p className="rb-faq-answer" id={`faq-answer-${index}`}>
-                    {faq.answer}
-                  </p>
-                )}
-              </div>
-            );
-          })}
+                  {isOpen && (
+                    <p className="rb-faq-answer" id={`faq-answer-${index}`}>
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section></>
+      </section>
+    </>
   );
 };
 

@@ -39,7 +39,7 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="rb-nav-right">
-          <span className="rb-timecode" aria-label={`Timecode ${time}`}>{time}</span>
+          <span className="rb-timecode hidden md:flex" aria-label={`Timecode ${time}`}>{time}</span>
           <button
             type="button"
             className="rb-menu"

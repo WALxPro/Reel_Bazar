@@ -132,10 +132,10 @@ const Contact = () => {
   };
 
   return (
-    <><PageHero eyebrow="Start a conversation" title="Let’s build" accent="something noticed." description="Tell us what you are making and we’ll shape the right creative plan." /><section className="w-full bg-black px-5 py-24 sm:px-8 md:py-32">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.4fr]">
+    <><PageHero eyebrow="Start a conversation" title="Let’s build" accent="something noticed." description="Tell us what you are making and we’ll shape the right creative plan." /><section className="rb-contact-section w-full bg-black px-5 py-24 sm:px-8 md:py-32">
+      <div className="rb-contact-layout mx-auto grid px-3 w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.4fr]">
         {/* LEFT */}
-        <div className="flex flex-col gap-8">
+        <div className="rb-contact-info flex flex-col gap-8">
           <div>
             <h3 className="text-[18px] font-bold leading-none tracking-[-0.08em] text-white md:text-[23px]">
               Let's talk.
