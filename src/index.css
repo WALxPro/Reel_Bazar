@@ -3005,3 +3005,16 @@ h3 em {
     font-size: 10px;
   }
 }
+
+/* Keep the two client reels prominent without changing other project cards. */
+.rb-reels .rb-project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 920px;
+}
+
+@media (max-width: 900px) {
+  .rb-reels .rb-project-grid {
+    grid-template-columns: minmax(0, 640px);
+    justify-content: center;
+  }
+}
