@@ -131,7 +131,7 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 /* Header */
 .rb-header {
   position: sticky;
-  z-index: 1000;
+  z-index: 998;
   top: 0;
   width: 100%;
   border-bottom: 1px solid var(--ln);
@@ -383,10 +383,32 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
   .rb-project-card:hover { transform: none; }
 }
 /* Project detail modal */
-.rb-modal { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 20px; background: color-mix(in srgb,var(--bg) 85%,transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.rb-modal-card { position: relative; display: grid; width: min(100%,880px); max-height: 90vh; grid-template-columns: 1fr 1fr; gap: 28px; overflow: auto; padding: 30px; border: 1px solid var(--ln); border-radius: 20px; background: var(--pn); }
-.rb-modal-media { display: grid; min-height: 320px; overflow: hidden; place-items: center; border-radius: 10px; background: var(--bg); }
-.rb-modal-media>video { width: 100%; height: 100%; max-height: 70vh; object-fit: contain; }
+.rb-modal {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, .8);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.rb-modal-card {
+  position: relative;
+  display: grid;
+  width: min(100%, 1100px);
+  max-height: 94vh;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+  overflow: hidden;
+  padding: 30px;
+  border: 1px solid var(--ln);
+  border-radius: 20px;
+  background: var(--pn);
+}
+.rb-modal-media { display: grid; min-height: 0; overflow: hidden; place-items: center; border-radius: 10px; background: var(--bg); }
+.rb-modal-media>video { width: 100%; height: auto; max-height: 60vh; object-fit: contain; }
 .rb-modal-content { display: flex; flex-direction: column; align-items: flex-start; }
 .rb-modal-content>.rb-mono { margin: 0 0 10px; color: var(--sun); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
 .rb-modal-content h2 { margin: 0 0 10px; font-size: 32px; }
@@ -396,6 +418,14 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 .rb-modal-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
 .rb-close { position: absolute; z-index: 3; top: 12px; right: 12px; display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--ln); border-radius: 50%; background: var(--bg); color: var(--tx); cursor: pointer; font-size: 24px; }
 
+@media (max-width: 800px) {
+  .rb-modal-card {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .rb-modal-card::-webkit-scrollbar { display: none; }
+}
 /* Testimonials */
 .rb-testimonials { overflow: hidden; }
 .rb-testimonial-rows { display: grid; gap: 14px; margin-top: 42px; }
@@ -444,6 +474,12 @@ h1 em, h2 em, h3 em { color: var(--sun); font-family: "Instrument Serif", Georgi
 .rb-footer-intro { max-width: 380px; }
 .rb-footer-intro>p { margin: 18px 0; color: color-mix(in srgb,var(--tx) 72%,transparent); font-size: 15px; font-weight: 600; }
 .rb-footer-intro>a { color: var(--sun); font: 13px "DM Mono",monospace; text-decoration: none; }
+.rb-footer-contact-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; }
+.rb-footer-contact-links a { color: var(--tx); font-size: 13px; font-weight: 700; text-decoration: none; }
+.rb-footer-contact-links a:hover { color: var(--sun); }
+.rb-footer-socials { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+.rb-footer-socials a { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid var(--ln); border-radius: 50%; background: var(--bg); color: var(--tx); font-size: 18px; transition: border-color .2s,color .2s,transform .2s; }
+.rb-footer-socials a:hover { transform: translateY(-2px); border-color: var(--sun); color: var(--sun); }
 .rb-footer-services h2, .rb-footer-explore h2 { margin: 4px 0 14px; color: color-mix(in srgb,var(--tx) 55%,transparent); font: 12px "DM Mono",monospace; letter-spacing: .16em; text-transform: uppercase; }
 .rb-footer-services>div, .rb-footer-explore nav { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 18px; }
 .rb-footer-services a, .rb-footer-explore nav a, .rb-footer-bottom>a { color: var(--tx); font-size: 13px; font-weight: 800; text-decoration: none; transition: color .2s; }

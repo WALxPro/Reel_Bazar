@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 
 export default function ProjectModal({ project, onClose }) {
@@ -10,9 +11,18 @@ export default function ProjectModal({ project, onClose }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
+  useEffect(() => {
+    if (!project) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [project]);
+
   if (!project) return null;
 
-  return (
+  return createPortal(
     <div className="rb-modal" onMouseDown={(event) => {
       if (event.target === event.currentTarget) onClose();
     }} role="presentation">
@@ -39,6 +49,7 @@ export default function ProjectModal({ project, onClose }) {
           </div>
         </div>
       </article>
-    </div>
+    </div>,
+    document.body
   );
 }

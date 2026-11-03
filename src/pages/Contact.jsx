@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { Mail, Clock, CheckCircle2 } from "lucide-react";
-import { FaInstagram } from "react-icons/fa";
+import { Mail, Phone, Clock, CheckCircle2 } from "lucide-react";
+import { FaInstagram, FaWhatsapp, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { useSearchParams } from "react-router-dom";
 import PageHero from "../components/PageHero";
 
 const CONTACT_EMAIL = "contact@thereelbazar.com";
-const INSTAGRAM_HANDLE = "@_thereelbazar";
+const PHONE_NUMBER = "+923422755150";
+const WHATSAPP_NUMBER = "923422755150";
+const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello! I want to know more about your services.")}`;
+const socialLinks = [
+  { label: "Instagram", href: "https://www.instagram.com/_thereelbazar/", Icon: FaInstagram },
+  { label: "X (Twitter)", href: "https://x.com/TheReelBazar", Icon: FaXTwitter },
+  { label: "YouTube", href: "https://www.youtube.com/@TheReelBazar-g8h", Icon: FaYoutube },
+];
 
 const inputClasses = "rb-contact-input";
 const serviceOptions = [
@@ -156,16 +164,37 @@ const Contact = () => {
               <Mail size={18} className="text-white/60" />
               {CONTACT_EMAIL}
             </a>
-
             <a
-              href="https://instagram.com/_thereelbazar"
-              target="_blank"
-              rel="noreferrer"
+              href={`tel:${PHONE_NUMBER}`}
               className="flex items-center gap-3 text-white transition hover:text-white/70"
             >
-              <FaInstagram size={18} className="text-white/60" />
-              {INSTAGRAM_HANDLE}
+              <Phone size={18} className="text-white/60" />
+              +92 342 2755150
             </a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-white transition hover:text-white/70"
+            >
+              <FaWhatsapp size={18} className="text-white/60" />
+              Message us on WhatsApp
+            </a>
+
+            <div className="rb-footer-socials rb-contact-socials" aria-label="Social media">
+              {socialLinks.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit TheReelBazar on ${label}`}
+                  title={label}
+                >
+                  <Icon aria-hidden="true" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* RESPONSE TIME */}
