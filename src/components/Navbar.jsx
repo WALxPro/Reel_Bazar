@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const links = [{ name: "Home", path: "/" }, { name: "Services", path: "/services" }, { name: "Portfolio", path: "/case-study" }, { name: "About", path: "/about-us" }, { name: "Contact", path: "/contact" }, { name: "FAQ", path: "/faq" }];
+const links = [{ name: "Home", path: "/" }, { name: "Services", path: "/services" }, { name: "Portfolio", path: "/case-study" }, { name: "About", path: "/about-us" },{ name: "FAQ", path: "/faq" }, { name: "Contact", path: "/contact" }, ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -28,7 +28,8 @@ export default function Navbar() {
     <header className="rb-header">
       <div className="rb-wrap rb-nav">
         <Link className="rb-brand" to="/" aria-label="TheReelBazar home">
-          <b aria-hidden="true" /><span>The<em>Reel</em>Bazar</span>
+          <img className="rb-brand-logo" src="/logo.jpeg" alt="TheReelBazar" />
+          <span>The<em>Reel</em>Bazar</span>
         </Link>
         <nav id="primary-navigation" className={open ? "open" : ""} aria-label="Main navigation">
           {links.map((link) => (

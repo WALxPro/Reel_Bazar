@@ -12,9 +12,9 @@ const links = [
 ];
 
 const services = [
-  { label: "Video editing", to: "/services#video" },
-  { label: "Website development", to: "/services#website" },
-  { label: "Social media management", to: "/services#social" },
+  { label: "Video editing", to: "/services" },
+  { label: "Website development", to: "/services" },
+  { label: "Social media management", to: "/services" },
 ];
 
 const phoneNumber = "+923422755150";
@@ -30,7 +30,10 @@ export default function Footer() {
     <footer className="rb-footer">
       <div className="rb-wrap rb-footer-content">
         <div className="rb-footer-intro">
-          <Link className="rb-brand" to="/"><b aria-hidden="true" /><span>The<em>Reel</em>Bazar</span></Link>
+          <Link className="rb-brand" to="/" aria-label="TheReelBazar home">
+            <img className="rb-brand-logo" src="/logo.jpeg" alt="TheReelBazar" />
+            <span>The<em>Reel</em>Bazar</span>
+          </Link>
           <p>One creative team for the content, social presence and website that help your brand get noticed.</p>
           <a href="mailto:contact@thereelbazar.com">contact@thereelbazar.com ↗</a>
           <div className="rb-footer-contact-links">

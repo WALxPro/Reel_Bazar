@@ -71,13 +71,9 @@ export default function Pricing({ active }) {
   const show = (id) => !active || active === id;
 
   return (
-    <section className="rb-section rb-pricing" id="pricing">
+    <section className=" rb-pricing" id="pricing">
       <div className="rb-wrap">
-        <Reveal variant="heading">
-          <p className="rb-eyebrow">Services &amp; pricing</p>
-          <h2>Everything your brand needs to be <em>seen.</em></h2>
-          <p className="rb-subtitle">Pick one service or combine all three. Clear packages, honest prices, no hidden surprises.</p>
-        </Reveal>
+
 
         {show("video") && <PlanGroup key="video" planGroup={video} id="video" label="V1 · Video editing" />}
         {show("website") && <PlanGroup key="website" planGroup={website} id="website" label="W1 · Website development" />}

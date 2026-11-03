@@ -44,7 +44,7 @@ export default function ProjectModal({ project, onClose }) {
           <h3>What we delivered</h3>
           <ul>{project.deliverables.map((item) => <li key={item}>{item}</li>)}</ul>
           <div className="rb-modal-actions">
-            {project.slug && <Link className="rb-button rb-outline" to={`/case-study/${project.slug}`} onClick={onClose}>See case study ↗</Link>}
+             
             <Link className="rb-button" to="/contact" onClick={onClose}>Start a similar project ↗</Link>
           </div>
         </div>
