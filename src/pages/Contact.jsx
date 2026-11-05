@@ -186,7 +186,7 @@ const serviceSections = videoSection + websiteSection + socialSection;
 
             <p className="mt-5 max-w-[420px] text-xs leading-relaxed text-white/80 md:text-[16px]">
               Tell us about your project and we'll get back with a plan,
-              timeline, and pricing tailored to your content.
+              timeline, and pricing tailored to your content ok.
             </p>
           </div>
 
