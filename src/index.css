@@ -722,12 +722,21 @@ h3 em {
   position: relative;
   aspect-ratio: 16/11;
   overflow: hidden;
+  container-type: inline-size;
   border: 2px solid var(--ln);
   border-radius: 18px;
   background: var(--bg);
   box-shadow:
     0 0 0 7px var(--pn),
     0 40px 80px color-mix(in srgb, var(--bg) 60%, transparent);
+}
+.rb-showreel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0a0a0a;
+  color: var(--tx);
+  font-family: "DM Mono", monospace;
 }
 .rb-blob {
   position: absolute;
@@ -776,6 +785,12 @@ h3 em {
       transparent 50.3%
     );
 }
+.rb-showreel-shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgb(0 0 0 / 15%), rgb(0 0 0 / 75%));
+}
 .rb-rec,
 .rb-time,
 .rb-monitor-title {
@@ -811,6 +826,199 @@ h3 em {
 .rb-monitor-title {
   bottom: 16px;
   left: 18px;
+}
+.rb-showreel-scene {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8%;
+  text-align: center;
+  opacity: 0;
+  animation: rb-showreel-scene var(--scene-duration) var(--scene-delay) both;
+}
+.rb-showreel-scene.is-last {
+  animation-name: rb-showreel-scene-last;
+}
+@keyframes rb-showreel-scene {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+@keyframes rb-showreel-scene-last {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  12%,
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rb-showreel-small {
+  margin-bottom: 2cqw;
+  color: var(--sun);
+  font-size: clamp(9px, 2.1cqw, 20px);
+  letter-spacing: 0.35em;
+}
+.rb-showreel-big {
+  margin: 0;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(24px, 9.5cqw, 96px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0.5cqw 3cqw rgb(0 0 0 / 50%);
+  text-transform: uppercase;
+}
+.rb-showreel-mid {
+  font-size: clamp(20px, 7cqw, 72px);
+}
+.rb-showreel-accent {
+  color: var(--red);
+}
+.rb-showreel-character {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(60%) rotateX(80deg);
+  animation: rb-showreel-character 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  animation-delay: calc(var(--character-index) * 0.045s);
+}
+@keyframes rb-showreel-character {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rb-showreel-number {
+  color: transparent;
+  font-family: Impact, sans-serif;
+  font-size: clamp(36px, 16cqw, 170px);
+  line-height: 0.9;
+  -webkit-text-stroke: 2px var(--tx);
+}
+.rb-showreel-sub {
+  margin-top: 2cqw;
+  font-size: clamp(8px, 1.8cqw, 19px);
+  letter-spacing: 0.12em;
+}
+.rb-showreel-line {
+  width: 30cqw;
+  height: 3px;
+  margin-top: 2cqw;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: rb-showreel-line 1s 1.3s ease-out both;
+  background: var(--tx);
+}
+@keyframes rb-showreel-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+.rb-showreel-cta {
+  margin-top: 3cqw;
+  padding: 1.2cqw 3cqw;
+  border-radius: 99px;
+  animation: rb-showreel-pulse 1.2s 1s ease-in-out infinite alternate;
+  background: var(--tx);
+  color: var(--bg);
+  font-size: clamp(9px, 1.8cqw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+@keyframes rb-showreel-pulse {
+  to {
+    transform: scale(1.07);
+    box-shadow: 0 0 30px rgb(255 61 31 / 70%);
+  }
+}
+.rb-showreel-bars {
+  position: absolute;
+  z-index: 5;
+  right: 5%;
+  bottom: 7%;
+  display: flex;
+  height: 40%;
+  align-items: flex-end;
+  gap: 0.7cqw;
+}
+.rb-showreel-bars i {
+  width: 0.9cqw;
+  height: 100%;
+  transform: scaleY(0.2);
+  transform-origin: bottom;
+  animation: rb-showreel-eq 0.6s ease-in-out infinite alternate;
+  animation-delay: calc(var(--bar-index) * -0.17s);
+  border-radius: 2px;
+  background: linear-gradient(to top, var(--tl), var(--sun), var(--red));
+}
+.rb-showreel-bars i:nth-child(2n) {
+  animation-duration: 0.45s;
+}
+.rb-showreel-bars i:nth-child(3n) {
+  animation-duration: 0.8s;
+}
+@keyframes rb-showreel-eq {
+  to {
+    transform: scaleY(1);
+  }
+}
+.rb-showreel-flash {
+  position: absolute;
+  z-index: 6;
+  inset: 0;
+  animation: rb-showreel-flash 3.8s linear infinite;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes rb-showreel-flash {
+  0%,
+  5%,
+  100% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 0.18;
+  }
+}
+.rb-showreel-wrap {
+  min-width: 0;
+}
+.rb-showreel-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+}
+.rb-showreel-controls button {
+  padding: 9px 16px;
+  border: 1px solid var(--sun);
+  border-radius: 99px;
+  background: var(--sun);
+  color: var(--bg);
+  cursor: pointer;
+  font: 700 11px "DM Mono", monospace;
+  letter-spacing: 0.12em;
+}
+.rb-showreel-controls button.is-secondary {
+  background: transparent;
+  color: var(--tx);
 }
 .rb-play {
   position: absolute;
@@ -2502,6 +2710,15 @@ h3 em {
   }
   .motion-word > span {
     opacity: 1;
+  }
+  .rb-showreel-scene {
+    opacity: 0;
+    transform: none;
+  }
+  .rb-showreel-scene.is-last,
+  .rb-showreel-character {
+    opacity: 1;
+    transform: none;
   }
 }
 

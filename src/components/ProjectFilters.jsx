@@ -1,9 +1,10 @@
 import { portfolioProjects } from "../data/projects";
 
 const filters = [
+  { label: "Video editing", type: "Video editing" },
   { label: "Websites", type: "Websites" },
   { label: "Social media", type: "Social media" },
-  { label: "Video editing", type: "Video editing" },
+  
 ];
 
 export default function ProjectFilters({ active, onChange }) {

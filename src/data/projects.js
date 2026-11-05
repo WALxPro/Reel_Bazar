@@ -296,7 +296,7 @@ const sampleProjects = [
       "WhatsApp free trial booking",
     ],
     colors: ["#ff202b", "#111111", "#ffffff"],
-    thumbnail: "FitCore Fitness Website Showcase.png",
+    thumbnail: "/FitCore Fitness Website Showcase.png",
   },
   {
     id: "luxe",
@@ -341,7 +341,7 @@ const sampleProjects = [
       "Feature reveal reels",
     ],
     colors: ["#943dff", "#12101f", "#e6b8ff"],
-    thumbnail: "/apple-touch-icon.png",
+    thumbnail: "/Neon Purple AI Social Campaign.png",
 
   },
 ];

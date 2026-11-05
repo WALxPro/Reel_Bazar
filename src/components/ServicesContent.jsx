@@ -7,7 +7,6 @@ const services = [
     color: "#ff3d1f",
     description: "Cinematic edits made to hold attention from the first second.",
     features: ["Reels, Shorts & TikTok edits", "YouTube long-form videos", "Ads & promo videos", "Subtitles, motion graphics, sound"],
-    price: "Reels from $30–$40 · Long-form from $80–$100",
     href: "/services#video",
   },
   {
@@ -16,7 +15,6 @@ const services = [
     color: "#ffd23f",
     description: "We plan, create and post, so you can focus on your business.",
     features: ["Content calendar & strategy", "Reels, posts & stories", "Captions, hashtags & engagement", "Monthly performance report"],
-    price: "From $250 / month",
     href: "/services#social",
   },
   {
@@ -25,7 +23,6 @@ const services = [
     color: "#32d6c0",
     description: "Fast, mobile-first websites built to rank and convert visitors.",
     features: ["Business & portfolio websites", "SEO-ready structure & speed", "Online store & booking options", "Domain & hosting setup"],
-    price: "From $150 · up to $500",
     href: "/services#website",
   },
 ];

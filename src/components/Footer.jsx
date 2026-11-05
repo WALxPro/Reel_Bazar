@@ -19,7 +19,7 @@ const services = [
 
 const phoneNumber = "+923422755150";
 const whatsappUrl = "https://wa.me/923422755150";
-const emailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=contact@thereelbazar.com";
+const emailUrl = "mailto:contact@thereelbazar.com";
 const socialLinks = [
   { label: "Instagram", href: "https://www.instagram.com/_thereelbazar/", Icon: FaInstagram },
   { label: "X (Twitter)", href: "https://x.com/TheReelBazar", Icon: FaXTwitter },
@@ -36,9 +36,8 @@ export default function Footer() {
             <span>The<em>Reel</em>Bazar</span>
           </Link>
           <p>One creative team for the content, social presence and website that help your brand get noticed.</p>
-          <a href={emailUrl} target="_blank" rel="noopener noreferrer">contact@thereelbazar.com ↗</a>
+          <a href={emailUrl}>contact@thereelbazar.com ↗</a>
           <div className="rb-footer-contact-links">
-            <a href={`tel:${phoneNumber}`}>+92 342 2755150</a>
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
           </div>
           <div className="rb-footer-socials" aria-label="Social media">
