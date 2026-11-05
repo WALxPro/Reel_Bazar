@@ -81,61 +81,22 @@ const Contact = () => {
     setSending(true);
     setStatus("");
 
-    const esc = (v) =>
-  String(v ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-
-const row = (label, value) => `
-  <tr>
-    <td style="padding:10px 0;color:#888888;width:160px;">${esc(label)}</td>
-    <td style="padding:10px 0;font-weight:600;">${esc(value) || "—"}</td>
-  </tr>`;
-
-const section = (title, rows) => `
-  <div style="height:1px;background-color:#eeeeee;margin:0 30px;"></div>
-  <div style="padding:24px 30px;">
-    <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#999999;margin-bottom:14px;">${esc(title)}</div>
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-      ${rows}
-    </table>
-  </div>`;
-
-const videoSection = form.services.includes("Video editing")
-  ? section(
-      "VIDEO EDITING",
-      row("Videos per month", form.videos) + row("Format", form.format)
-    )
-  : "";
-
-const websiteSection = form.services.includes("Website development")
-  ? section(
-      "WEBSITE DEVELOPMENT",
-      row("Website type", form.websiteType) + row("Approx. pages", form.websitePages)
-    )
-  : "";
-
-const socialSection = form.services.includes("Social media management")
-  ? section(
-      "SOCIAL MEDIA MANAGEMENT",
-      row("Platforms", form.socialPlatforms)
-    )
-  : "";
-
-const serviceSections = videoSection + websiteSection + socialSection;
-
     const templateParams = {
-    name: form.name,
-    email: form.email,
-    company: form.company,
-    service: form.services.join(", "),
-    plan: requestedPlan || "—",
-    details: form.details || "—",
-    budget: form.budget || "—",
-    service_sections: serviceSections,
-  };
+      name: form.name,
+      email: form.email,
+      company: form.company,
+      service: form.services.join(", "),
+      services: form.services.join(", "),
+      selected_services: form.services.join(", "),
+      plan: requestedPlan,
+      videos: form.videos,
+      format: form.format,
+      website_type: form.websiteType,
+      website_pages: form.websitePages,
+      social_platforms: form.socialPlatforms,
+      details: form.details,
+      budget: form.budget,
+    };
 
     try {
       await emailjs.send(
@@ -177,7 +138,7 @@ const serviceSections = videoSection + websiteSection + socialSection;
         <div className="rb-contact-info flex flex-col gap-8">
           <div>
             <h3 className="text-[18px] font-bold leading-none tracking-[-0.08em] text-white md:text-[23px]">
-              
+              Let's talk.
             </h3>
 
             <h2 className="mt-3 text-[24px] font-bold leading-none tracking-[-0.08em] text-white md:text-[40px]">
@@ -186,7 +147,7 @@ const serviceSections = videoSection + websiteSection + socialSection;
 
             <p className="mt-5 max-w-[420px] text-xs leading-relaxed text-white/80 md:text-[16px]">
               Tell us about your project and we'll get back with a plan,
-              timeline, and pricing tailored to your content ok.
+              timeline, and pricing tailored to your content.
             </p>
           </div>
 
