@@ -266,7 +266,7 @@ const sampleProjects = [
       "Events & book launches",
     ],
     colors: ["#d9a441", "#241712", "#f5e8d6"],
-    thumbnail: "/public/Author Website Portfolio Mockup.png",
+    thumbnail: "/Author Website Portfolio Mockup.png",
   },
   {
     id: "brew",
@@ -281,7 +281,7 @@ const sampleProjects = [
       "WhatsApp food ordering",
     ],
     colors: ["#e87520", "#3b1e14", "#f5e6d5"],
-    thumbnail: "/public/Warm Restaurant Website Portfolio Mockup.png",
+    thumbnail: "/Warm Restaurant Website Portfolio Mockup.png",
   },
   {
     id: "fit",
@@ -296,7 +296,7 @@ const sampleProjects = [
       "WhatsApp free trial booking",
     ],
     colors: ["#ff202b", "#111111", "#ffffff"],
-    thumbnail: "/public/FitCore Fitness Website Showcase.png",
+    thumbnail: "FitCore Fitness Website Showcase.png",
   },
   {
     id: "luxe",
@@ -311,7 +311,7 @@ const sampleProjects = [
       "Booking-link Instagram stories",
     ],
     colors: ["#b76e79", "#e8bfae", "#d4a45a"],
-    thumbnail: "/public/Luxe Salon Social Campaign Showcase.png",
+    thumbnail: "/Luxe Salon Social Campaign Showcase.png",
   },
   {
     id: "urban",
@@ -326,7 +326,7 @@ const sampleProjects = [
       "Instagram story countdowns",
     ],
     colors: ["#ff5a45", "#1b1b1d", "#f5e8dc"],
-    thumbnail: "/public/Urban Edit Seasonal Social Campaign.png",
+    thumbnail: "/Urban Edit Seasonal Social Campaign.png",
   },
   {
     id: "nexora",
@@ -341,7 +341,7 @@ const sampleProjects = [
       "Feature reveal reels",
     ],
     colors: ["#943dff", "#12101f", "#e6b8ff"],
-    thumbnail: "/public/apple-touch-icon.png",
+    thumbnail: "/apple-touch-icon.png",
 
   },
 ];
