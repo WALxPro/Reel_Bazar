@@ -44,7 +44,8 @@ export default function StudioHero() {
         <div>
           <p className="rb-now">▶ Now playing · Creative studio</p>
           <h1>
-            Video editing, social media & websites that <em>get you</em>{" "}
+            {/* Video editing, social media & websites that <em>get you</em>{" "} */}
+            WhahjBXjhbhsvc
             <span className="rb-selection">noticed.</span>
           </h1>
           <p className="rb-lead">
