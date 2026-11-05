@@ -1,19 +1,21 @@
 import { portfolioProjects } from "../data/projects";
 
 const filters = [
-  { label: "All", type: "all" },
   { label: "Websites", type: "Websites" },
   { label: "Social media", type: "Social media" },
   { label: "Video editing", type: "Video editing" },
 ];
 
 export default function ProjectFilters({ active, onChange }) {
-  const count = (type) => type === "all"
-    ? portfolioProjects.length
-    : portfolioProjects.filter((project) => project.type === type).length;
+  const count = (type) =>
+    portfolioProjects.filter((project) => project.type === type).length;
 
   return (
-    <div className="rb-project-filters" role="group" aria-label="Filter projects by service">
+    <div
+      className="rb-project-filters"
+      role="group"
+      aria-label="Filter projects by service"
+    >
       {filters.map(({ label, type }) => (
         <button
           key={type}

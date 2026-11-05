@@ -6,12 +6,11 @@ import { portfolioProjects } from "../data/projects";
 import { Reveal } from "./Motion";
 
 export default function Work() {
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("Websites");
+
   const visibleProjects = useMemo(
-    () => filter === "all"
-      ? portfolioProjects
-      : portfolioProjects.filter((project) => project.type === filter),
-    [filter],
+    () => portfolioProjects.filter((project) => project.type === filter),
+    [filter]
   );
 
   return (
@@ -20,9 +19,13 @@ export default function Work() {
         <Reveal variant="heading">
           <p className="rb-eyebrow">On the timeline</p>
           <h2>Work that <em>speaks.</em></h2>
-          <p className="rb-subtitle">Websites, social media campaigns and videos. Select a project to see what we delivered.</p>
+          <p className="rb-subtitle">
+            Websites, social media campaigns and videos. Select a project to see what we delivered.
+          </p>
         </Reveal>
+
         <ProjectFilters active={filter} onChange={setFilter} />
+
         <div className="rb-project-grid">
           {visibleProjects.map((project) => (
             <Reveal key={project.id} variant="card">
@@ -30,10 +33,13 @@ export default function Work() {
             </Reveal>
           ))}
         </div>
+
         <div className="rb-bundle rb-portfolio-cta">
           <p>Next up</p>
           <h3>Your project could be <em>next.</em></h3>
-          <Link className="rb-button rb-glow" to="/contact">Start a project ↗</Link>
+          <Link className="rb-button rb-glow" to="/contact">
+            Start a project ↗
+          </Link>
         </div>
       </div>
     </section>

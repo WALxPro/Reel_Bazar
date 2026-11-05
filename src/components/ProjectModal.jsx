@@ -28,15 +28,28 @@ export default function ProjectModal({ project, onClose }) {
     }} role="presentation">
       <article className="rb-modal-card" role="dialog" aria-modal="true" aria-label={`${project.brand} project details`} tabIndex={-1}>
         <button type="button" className="rb-close" onClick={onClose} aria-label="Close project">×</button>
+      
         <div className="rb-modal-media">
-          {project.videoUrl ? (
-            <video src={project.videoUrl} poster={project.thumbnail} controls autoPlay playsInline preload="metadata" />
-          ) : project.type === "Websites" ? (
-            <span className="rb-browser-mock" aria-hidden="true"><span className="rb-browser-bar"><i /><i /><i /><u /></span><span className="rb-browser-hero"><i /><i /></span><span className="rb-browser-blocks"><i /><i /><i /></span></span>
-          ) : (
-            <span className="rb-instagram-mock" aria-hidden="true"><span className="rb-instagram-profile"><i /><u /></span><span className="rb-instagram-grid">{Array.from({ length: 9 }, (_, i) => <i key={i} />)}</span></span>
-          )}
-        </div>
+  {project.videoUrl ? (
+    <video
+      src={project.videoUrl}
+      poster={project.thumbnail}
+      controls
+      autoPlay
+      playsInline
+      preload="metadata"
+    />
+  ) : project.thumbnail ? (
+    <img
+      src={project.thumbnail}
+      alt={project.label || project.brand}
+    />
+  ) : (
+    <span className="rb-instagram-mock" aria-hidden="true">
+      {/* Existing Instagram mockup */}
+    </span>
+  )}
+</div>
         <div className="rb-modal-content">
           <p className="rb-mono">{project.type}</p>
           <h2>{project.brand}</h2>

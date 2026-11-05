@@ -35,10 +35,7 @@ function PlanGroup({ planGroup, id, label }) {
           </Reveal>
         ))}
       </div>
-      <div className="rb-addons">
-        <h3>Add-ons</h3>
-        <div>{planGroup.addons.map((addon) => <span key={addon}>{addon}</span>)}</div>
-      </div>
+    
       {planGroup.buildSteps && (
         <>
           <h3 className="rb-subheading">{id === "video" ? "How we edit it" : "How we build it"}</h3>

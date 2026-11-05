@@ -1,21 +1,70 @@
 export const servicePlans = {
-  video: {
-    name: "Video editing",
-    accent: "var(--tl)",
-    unit: "per video",
-    buildSteps: [
-      { number: "01", name: "Brief", detail: "Your footage, idea and goals." },
-      { number: "02", name: "Edit", detail: "Cuts, pacing, captions and sound." },
-      { number: "03", name: "Review", detail: "You send feedback, we refine." },
-      { number: "04", name: "Deliver", detail: "Final files in every format you need." },
-    ],
-    plans: [
-      { name: "Reel", price: 30, suffix: "/ video", subtitle: "Reels, Shorts & TikTok", delivery: "1–2 days", features: ["Up to 60 seconds", "Subtitles & captions", "Transitions & sound design", "Color correction", "2 rounds of revisions"] },
-      { name: "Long-form", price: 80, suffix: "/ video", featured: true, subtitle: "YouTube videos", delivery: "3–5 days", features: ["Up to 15 minutes", "Cinematic cuts & pacing", "Motion graphics & lower thirds", "Color grading & sound mix", "Subtitles & captions", "3 rounds of revisions"] },
-      { name: "Ads & Promo", price: 100, suffix: "/ video", subtitle: "Ads & brand videos", delivery: "3–5 days", features: ["Up to 90 seconds", "Hook-first ad edits", "Motion graphics & animation", "Multiple aspect ratios", "Color grading & sound design", "Unlimited minor revisions"] },
-    ],
-    addons: ["Extra revision round — $10", "Thumbnail design — $10 each", "Extra aspect ratio — $5", "Voiceover — from $15", "Rush delivery (24h) — +30%", "Custom project — custom quote"],
-  },
+ video: {
+  name: "Video editing",
+  accent: "var(--tl)",
+  unit: "per project",
+
+  buildSteps: [
+    { number: "01", name: "Brief", detail: "Your footage, idea and goals." },
+    { number: "02", name: "Edit", detail: "Cuts, pacing, captions and sound." },
+    { number: "03", name: "Review", detail: "You send feedback, we refine." },
+    { number: "04", name: "Deliver", detail: "Final files in every format you need." },
+  ],
+
+  plans: [
+    {
+      name: "Reels Editing",
+      price: "$25–$30",
+      suffix: "/ video",
+      subtitle: "Reels, Shorts & TikTok",
+      delivery: "1–2 days",
+      features: [
+        "Up to 60 seconds",
+        "Professional cuts & transitions",
+        "Subtitles & animated captions",
+        "Background music & sound effects",
+        "Basic color correction",
+        "Social media ready formats",
+      ]
+    },
+    {
+      name: "Long-form Editing",
+      price: "$100–$150",
+      suffix: "/ video",
+      featured: true,
+      subtitle: "YouTube & professional videos",
+      delivery: "3–5 days",
+      features: [
+        "Up to 10 to 15 minutes",
+        "Cinematic cuts & storytelling",
+        "Advanced transitions & pacing",
+        "Motion graphics & lower thirds",
+        "Professional color grading",
+        "Sound design & audio enhancement",
+        "Subtitles & captions",
+      ]
+    },
+    {
+      name: "Custom Editing",
+      price: "Let's Talk",
+      suffix: "",
+      subtitle: "Bulk videos & ongoing editing",
+      delivery: "Flexible turnaround",
+      custom: true,
+      features: [
+        "Bulk Reels, Shorts & long-form videos",
+        "Custom monthly editing packages",
+        "Consistent branding & editing style",
+        "Batch video production & delivery",
+        "Advanced motion graphics & animations",
+        "Multiple social media formats",
+        "Dedicated editing workflow",
+        "Priority delivery options",
+        "Custom pricing based on project scope"
+      ]
+    }
+  ],
+},
   website: {
     name: "Website development",
     accent: "var(--tl)",
@@ -31,7 +80,7 @@ export const servicePlans = {
       { name: "Business", price: 300, featured: true, subtitle: "Full business website", delivery: "7–10 days", features: ["Up to 6 pages", "Custom design in your brand style", "SEO setup: meta tags, sitemap, schema", "Speed optimization", "Google Analytics & Search Console", "Blog / news section", "3 rounds of revisions"] },
       { name: "Premium", price: 500, subtitle: "Online store or advanced site", delivery: "10–14 days", features: ["Up to 10 pages or online store", "Product catalog & secure checkout", "Booking / payment integrations", "Advanced SEO & speed tuning", "Admin panel", "30 days of free support", "Unlimited minor revisions"] },
     ],
-    addons: ["Extra page — $15 each", "Logo & brand kit — from $40", "Content writing — from $25 / page", "Extra revision round — $20", "Monthly care & updates — $30 / mo", "Domain & hosting — at cost"],
+    
   },
   social: {
     name: "Social media management",

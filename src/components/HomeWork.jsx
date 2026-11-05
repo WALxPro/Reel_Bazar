@@ -13,7 +13,7 @@ export default function HomeWork() {
       <div className="rb-wrap">
         <Reveal variant="heading">
           <p className="rb-eyebrow">Latest from the timeline</p>
-          <h2>Work that <em>speaks.</em></h2>
+          <h2 className="rb-homework">Work that <em>speaks.</em></h2>
         </Reveal>
         <div className="rb-project-grid rb-home-project-grid">
           {featuredProjects.map((project) => (

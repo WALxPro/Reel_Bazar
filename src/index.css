@@ -492,9 +492,9 @@ h3 em {
   position: absolute;
   right: -2%;
   bottom: 25px;
-  left: -2%;
+  left: 0%;
   overflow: hidden;
-  padding: 8px 0;
+  padding: 12px 20px;
   transform: rotate(-1deg);
   background: var(--sun);
   color: var(--bg);
@@ -503,6 +503,60 @@ h3 em {
     monospace;
   letter-spacing: 0.1em;
   white-space: nowrap;
+}
+.rb-page-hero__tape::before,
+.rb-page-hero__tape::after {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  height: 5px;
+  background: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bg) 75%, transparent) 0 10px,
+    transparent 10px 20px
+  );
+  content: "";
+}
+.rb-page-hero__tape::before {
+  top: 3px;
+}
+.rb-page-hero__tape::after {
+  bottom: 3px;
+}
+.rb-page-hero__tape-track {
+  display: flex;
+  width: max-content;
+  animation: rb-page-hero-marquee 24s linear infinite;
+}
+.rb-page-hero__tape-group,
+.rb-page-hero__tape-item {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+.rb-page-hero__tape-group {
+  gap: 20px;
+  padding-right: 20px;
+}
+.rb-page-hero__tape-item {
+  gap: 12px;
+}
+.rb-page-hero__reel {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  animation: rb-film-reel-spin 3s linear infinite;
+}
+@keyframes rb-page-hero-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes rb-film-reel-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 .rb-service-jumps {
   display: flex;
@@ -3018,4 +3072,7 @@ h3 em {
     grid-template-columns: minmax(0, 640px);
     justify-content: center;
   }
+}
+.rb-homework{
+  margin-bottom: 20px !important;
 }

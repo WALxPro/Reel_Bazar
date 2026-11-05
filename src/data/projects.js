@@ -254,40 +254,79 @@ export const Homeprojects = [
 
 const sampleProjects = [
   {
+    id: "author",
+    type: "Websites",
+    brand: "Author website concept",
+    label: "Author & book showcase mockup",
+    description:
+      "Concept design for an elegant author website that showcases books, connects with readers and drives book sales.",
+    deliverables: [
+      "Book showcase & sales",
+      "Reader newsletter sign-up",
+      "Events & book launches",
+    ],
+    colors: ["#d9a441", "#241712", "#f5e8d6"],
+    thumbnail: "/public/Author Website Portfolio Mockup.png",
+  },
+  {
     id: "brew",
     type: "Websites",
     brand: "Restaurant website concept",
-    label: "Hospitality website mockup",
-    description: "Concept design for a warm, menu-first website that turns local searches into visits.",
-    deliverables: ["Digital menu", "Google Maps & local SEO", "WhatsApp ordering button"],
-    colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
+    label: "Restaurant & food ordering website mockup",
+    description:
+      "Modern restaurant website concept designed to showcase delicious food, simplify online ordering and attract more local customers.",
+    deliverables: [
+      "Interactive digital menu",
+      "Google Maps & local SEO",
+      "WhatsApp food ordering",
+    ],
+    colors: ["#e87520", "#3b1e14", "#f5e6d5"],
+    thumbnail: "/public/Warm Restaurant Website Portfolio Mockup.png",
   },
   {
     id: "fit",
     type: "Websites",
-    brand: "Fitness website concept",
-    label: "Gym website mockup",
-    description: "Concept design with a class timetable, membership plans and one-tap trial booking.",
-    deliverables: ["Class schedule", "Membership plans", "WhatsApp trial booking"],
-    colors: ["#ff3d1f", "#ffd23f", "#32d6c0"],
+    brand: "FitCore Fitness website concept",
+    label: "Modern gym & fitness website mockup",
+    description:
+      "Bold, high-energy fitness website concept designed to showcase training programs, simplify class bookings and attract new gym members through a seamless digital experience.",
+    deliverables: [
+      "Interactive class timetable",
+      "Gym membership plans",
+      "WhatsApp free trial booking",
+    ],
+    colors: ["#ff202b", "#111111", "#ffffff"],
+    thumbnail: "/public/FitCore Fitness Website Showcase.png",
   },
   {
     id: "luxe",
     type: "Social media",
     brand: "Salon social campaign concept",
-    label: "Before / after content mockup",
-    description: "Concept campaign built around transformation content that turns viewers into bookings.",
-    deliverables: ["Before/after reels", "Carousel posts", "Booking-link stories"],
-    colors: ["#ffd23f", "#32d6c0", "#ff3d1f"],
+    label: "Beauty salon social media campaign mockup",
+    description:
+      "Elegant social media campaign concept designed to highlight beauty transformations, engage audiences and turn followers into salon bookings.",
+    deliverables: [
+      "Before/after transformation reels",
+      "Beauty showcase carousel posts",
+      "Booking-link Instagram stories",
+    ],
+    colors: ["#b76e79", "#e8bfae", "#d4a45a"],
+    thumbnail: "/public/Luxe Salon Social Campaign Showcase.png",
   },
   {
     id: "urban",
     type: "Social media",
     brand: "Retail social campaign concept",
-    label: "Seasonal campaign mockup",
-    description: "Concept multi-platform seasonal campaign with offers and countdowns.",
-    deliverables: ["Campaign calendar", "Offer creatives", "Story countdowns"],
-    colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
+    label: "Seasonal fashion & retail campaign mockup",
+    description:
+      "Bold, eye-catching social media campaign concept designed to promote seasonal collections, highlight exclusive offers and drive customer engagement through creative visuals and limited-time promotions.",
+    deliverables: [
+      "Seasonal campaign calendar",
+      "Promotional offer creatives",
+      "Instagram story countdowns",
+    ],
+    colors: ["#ff5a45", "#1b1b1d", "#f5e8dc"],
+    thumbnail: "/public/Urban Edit Seasonal Social Campaign.png",
   },
 ];
 
@@ -300,7 +339,8 @@ const reelProjects = [
     description: "A client review shared as a short-form video.",
     deliverables: ["Short-form edit", "Social-ready video"],
     colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
-    videoUrl: "https://res.cloudinary.com/daterfw1n/video/upload/v1792626435/Test_cmewvw.mp4",
+    videoUrl:
+      "https://res.cloudinary.com/daterfw1n/video/upload/v1792626435/Test_cmewvw.mp4",
   },
   {
     id: "client-review-two",
@@ -310,7 +350,8 @@ const reelProjects = [
     description: "A client review shared as a short-form video.",
     deliverables: ["Short-form edit", "Social-ready video"],
     colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
-    videoUrl: "https://res.cloudinary.com/m4hnnyml/video/upload/v1791369394/client_review_2.mp4",
+    videoUrl:
+      "https://res.cloudinary.com/m4hnnyml/video/upload/v1791369394/client_review_2.mp4",
   },
 ];
 
@@ -322,10 +363,13 @@ export const portfolioProjects = [
     brand: project.title,
     label: `${project.category} · ${project.type}`,
     description: project.description,
-    deliverables: ["Video editing", "Pacing, captions & graphics", "Platform-ready export"],
+    deliverables: [
+      "Video editing",
+      "Pacing, captions & graphics",
+      "Platform-ready export",
+    ],
     colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
     videoUrl: project.video,
     slug: project.slug,
   })),
-  
 ];
