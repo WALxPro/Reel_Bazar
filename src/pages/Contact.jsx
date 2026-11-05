@@ -23,6 +23,61 @@ const serviceOptions = [
   { value: "Social media management", label: "Social media management" },
 ];
 
+const escapeEmailHtml = (value) =>
+  String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
+const emailValue = (value) => escapeEmailHtml(value || "Not provided");
+
+const buildServiceSections = (form) => {
+  const sections = [];
+  const addSection = (title, rows) => {
+    sections.push(`
+      <div style="padding: 24px 30px;">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 1.5px; color: #999999; margin-bottom: 14px;">${title}</div>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+          ${rows
+            .map(
+              ([label, value]) => `
+                <tr>
+                  <td style="padding: 10px 0; color: #888888; width: 160px;">${label}</td>
+                  <td style="padding: 10px 0; font-weight: 600;">${value}</td>
+                </tr>`,
+            )
+            .join("")}
+        </table>
+      </div>
+      <div style="height: 1px; background-color: #eeeeee; margin: 0 30px;"></div>
+    `);
+  };
+
+  if (form.services.includes("Video editing")) {
+    addSection("VIDEO EDITING DETAILS", [
+      ["Videos per month", emailValue(form.videos)],
+      ["Video format", emailValue(form.format)],
+    ]);
+  }
+
+  if (form.services.includes("Website development")) {
+    addSection("WEBSITE DETAILS", [
+      ["Website type", emailValue(form.websiteType)],
+      ["Approx. number of pages", emailValue(form.websitePages)],
+    ]);
+  }
+
+  if (form.services.includes("Social media management")) {
+    addSection("SOCIAL MEDIA DETAILS", [
+      ["Platforms", emailValue(form.socialPlatforms)],
+    ]);
+  }
+
+  return sections.join("");
+};
+
 const Field = ({ label, children }) => (
   <label className="flex w-full flex-col gap-2">
     <span className="text-[18px] tracking-[-0.02em] text-white">{label}</span>
@@ -96,6 +151,7 @@ const Contact = () => {
       social_platforms: form.socialPlatforms,
       details: form.details,
       budget: form.budget,
+      service_sections: buildServiceSections(form),
     };
 
     try {
