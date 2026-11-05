@@ -12,8 +12,7 @@ export default function FloatingContactButtons() {
   const whatsappUrl =
     `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-  const emailUrl =
-    "https://mail.google.com/mail/?view=cm&fs=1&to=contact@thereelbazar.com";
+  const emailUrl = "mailto:contact@thereelbazar.com";
 
   return (
     <div
@@ -33,8 +32,6 @@ export default function FloatingContactButtons() {
       {/* EMAIL BUTTON */}
       <a
         href={emailUrl}
-        target="_blank"
-        rel="noopener noreferrer"
         aria-label="Send us an email"
         className="
           whatsapp-bounce

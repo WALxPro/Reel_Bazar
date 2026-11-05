@@ -6,7 +6,7 @@ import { portfolioProjects } from "../data/projects";
 import { Reveal } from "./Motion";
 
 export default function Work() {
-  const [filter, setFilter] = useState("Websites");
+  const [filter, setFilter] = useState("Video editing");
 
   const visibleProjects = useMemo(
     () => portfolioProjects.filter((project) => project.type === filter),

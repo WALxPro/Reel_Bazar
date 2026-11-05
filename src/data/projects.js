@@ -346,31 +346,6 @@ const sampleProjects = [
   },
 ];
 
-const reelProjects = [
-  {
-    id: "client-review-one",
-    type: "Video editing",
-    brand: "Client review",
-    label: "Client testimonial reel",
-    description: "A client review shared as a short-form video.",
-    deliverables: ["Short-form edit", "Social-ready video"],
-    colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
-    videoUrl:
-      "https://res.cloudinary.com/daterfw1n/video/upload/v1792626435/Test_cmewvw.mp4",
-  },
-  {
-    id: "client-review-two",
-    type: "Video editing",
-    brand: "Client review",
-    label: "Client testimonial reel",
-    description: "A client review shared as a short-form video.",
-    deliverables: ["Short-form edit", "Social-ready video"],
-    colors: ["#32d6c0", "#ffd23f", "#ff3d1f"],
-    videoUrl:
-      "https://res.cloudinary.com/m4hnnyml/video/upload/v1791369394/client_review_2.mp4",
-  },
-];
-
 export const portfolioProjects = [
   ...sampleProjects,
   ...projects.map((project) => ({

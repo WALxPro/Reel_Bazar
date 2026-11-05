@@ -41,9 +41,7 @@ const faqs = [
       <>
         Send a quote request through the contact form or email{" "}
         <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@thereelbazar.com"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="mailto:contact@thereelbazar.com"
         >
           contact@thereelbazar.com
         </a>

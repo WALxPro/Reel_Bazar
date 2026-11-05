@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import PageHero from "../components/PageHero";
 
 const CONTACT_EMAIL = "contact@thereelbazar.com";
-const CONTACT_EMAIL_URL = "https://mail.google.com/mail/?view=cm&fs=1&to=contact@thereelbazar.com";
+const CONTACT_EMAIL_URL = `mailto:${CONTACT_EMAIL}`;
 const PHONE_NUMBER = "+923422755150";
 const WHATSAPP_NUMBER = "923422755150";
 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello! I want to know more about your services.")}`;
@@ -216,8 +216,6 @@ const Contact = () => {
 
             <a
               href={CONTACT_EMAIL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex items-center gap-3 text-white transition hover:text-white/70"
             >
               <Mail size={18} className="text-white/60" />
