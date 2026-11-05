@@ -177,7 +177,7 @@ const serviceSections = videoSection + websiteSection + socialSection;
         <div className="rb-contact-info flex flex-col gap-8">
           <div>
             <h3 className="text-[18px] font-bold leading-none tracking-[-0.08em] text-white md:text-[23px]">
-              Let's talk.
+              
             </h3>
 
             <h2 className="mt-3 text-[24px] font-bold leading-none tracking-[-0.08em] text-white md:text-[40px]">
