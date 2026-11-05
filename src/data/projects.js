@@ -328,6 +328,22 @@ const sampleProjects = [
     colors: ["#ff5a45", "#1b1b1d", "#f5e8dc"],
     thumbnail: "/public/Urban Edit Seasonal Social Campaign.png",
   },
+  {
+    id: "nexora",
+    type: "Social media",
+    brand: "Tech startup social campaign concept",
+    label: "AI product launch & social media campaign mockup",
+    description:
+      "Futuristic social media campaign concept designed to launch an AI product, build brand awareness and drive user sign-ups through engaging educational and feature-focused content.",
+    deliverables: [
+      "Product launch creatives",
+      "Educational carousel posts",
+      "Feature reveal reels",
+    ],
+    colors: ["#943dff", "#12101f", "#e6b8ff"],
+    thumbnail: "/public/apple-touch-icon.png",
+
+  },
 ];
 
 const reelProjects = [

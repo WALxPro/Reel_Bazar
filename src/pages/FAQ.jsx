@@ -37,8 +37,20 @@ const faqs = [
   },
   {
     question: "How do I get started?",
-    answer:
-      "Send a quote request through the contact form or email contact@thereelbazar.com. We reply with pricing, a start date and a footage checklist within one business day.",
+    answer: (
+      <>
+        Send a quote request through the contact form or email{" "}
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@thereelbazar.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contact@thereelbazar.com
+        </a>
+        . We reply with pricing, a start date and a footage checklist within one
+        business day.
+      </>
+    ),
   },
 ];
 

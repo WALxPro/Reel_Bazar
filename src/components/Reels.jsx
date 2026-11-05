@@ -29,13 +29,11 @@ export default function Reels() {
     <section className="rb-section rb-reels" aria-labelledby="rb-reels-title">
       <div className="rb-wrap">
         <Reveal variant="heading">
-          <p className="rb-eyebrow">Client reels</p>
-          <h2 id="rb-reels-title">
-            Real clients. <em>Real reels.</em>
+          <p className="rb-eyebrow">Feedback</p>
+          <h2 id="rb-reels-title" className="rb-homework">
+            Testimonial. <em>Video.</em>
           </h2>
-          <p className="rb-subtitle">
-            A closer look at the video edits we created for our clients.
-          </p>
+         
         </Reveal>
 
         <div className="rb-project-grid">

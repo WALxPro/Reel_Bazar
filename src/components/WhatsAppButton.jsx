@@ -5,7 +5,6 @@ import { MdEmail } from "react-icons/md";
 
 export default function FloatingContactButtons() {
   const phoneNumber = "923422755150";
-  const email = "contact@thereelbazar.com";
 
   const message =
     "Hello! I want to know more about your services.";
@@ -14,7 +13,7 @@ export default function FloatingContactButtons() {
     `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   const emailUrl =
-    `mailto:${email}?subject=${encodeURIComponent("Service Inquiry")}&body=${encodeURIComponent(message)}`;
+    "https://mail.google.com/mail/?view=cm&fs=1&to=contact@thereelbazar.com";
 
   return (
     <div
@@ -34,6 +33,8 @@ export default function FloatingContactButtons() {
       {/* EMAIL BUTTON */}
       <a
         href={emailUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label="Send us an email"
         className="
           whatsapp-bounce

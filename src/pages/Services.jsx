@@ -15,7 +15,7 @@ const Services = () => {
   return (
     <>
       <PageMetadata title="Services & Pricing | Video Editing, Social Media Management & Website Development | TheReelBazar" description="Explore TheReelBazar video editing, website development and social media management packages, pricing, and add-ons." />
-      <PageHero eyebrow="Services & pricing" title="Everything your brand needs to be" accent="seen." description="Pick one service or combine all three. Clear packages, honest prices, no hidden surprises." />
+      <PageHero eyebrow="Services & pricing" title="Everything your brand needs to be" accent="seen."/>
       <nav className="rb-service-jumps rb-wrap" aria-label="Choose a service">
         {tabs.map((tab) => (
           <button
