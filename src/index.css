@@ -40,9 +40,10 @@ body {
   isolation: isolate;
   background: var(--bg);
   color: var(--tx);
-  font-family: "Syne", system-ui, sans-serif;
+  font-family: 'Manrope', sans-serif;
   line-height: 1.5;
 }
+
 body::before {
   position: fixed;
   z-index: -1;

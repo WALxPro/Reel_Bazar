@@ -1,21 +1,13 @@
-/** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx}",
-  ],
+  content: ['./index.html', './src/*/.{js,jsx}'],
   theme: {
     extend: {
-      colors: {
-        hero: {
-          purple: "#6d4bd4",
-          violet: "#8a6ae0",
-          dark: "#0b0b10",
-        },
-      },
-      fontFamily: {
-        sans: ["Syne", "system-ui", "sans-serif"],
-      },
+    fontFamily: {
+  display: ['"Bricolage Grotesque"', 'sans-serif'],
+  sans: ['Manrope', 'sans-serif'],
+  serif: ['"Instrument Serif"', 'serif'],
+  mono: ['"DM Mono"', 'monospace'],
+}
     },
   },
   plugins: [],

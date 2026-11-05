@@ -23,6 +23,70 @@ const serviceOptions = [
   { value: "Social media management", label: "Social media management" },
 ];
 
+/* ---------- Email HTML helpers (EmailJS template ke {{{service_sections}}} ke liye) ---------- */
+const esc = (v) =>
+  String(v ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+const emailRow = (label, value) => `
+  <tr>
+    <td style="padding:10px 0;color:#888888;width:160px;">${esc(label)}</td>
+    <td style="padding:10px 0;font-weight:600;">${esc(value) || "—"}</td>
+  </tr>`;
+
+const emailSection = (title, rows) => `
+  <div style="height:1px;background-color:#eeeeee;margin:0 30px;"></div>
+  <div style="padding:24px 30px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#999999;margin-bottom:14px;">${esc(title)}</div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+      ${rows}
+    </table>
+  </div>`;
+
+const buildServiceSections = (form) => {
+  let html = "";
+
+  if (form.services.includes("Video editing")) {
+    html += emailSection(
+      "VIDEO EDITING",
+      emailRow("Videos per month", form.videos) + emailRow("Format", form.format)
+    );
+  }
+
+  if (form.services.includes("Website development")) {
+    html += emailSection(
+      "WEBSITE DEVELOPMENT",
+      emailRow("Website type", form.websiteType) + emailRow("Approx. pages", form.websitePages)
+    );
+  }
+
+  if (form.services.includes("Social media management")) {
+    html += emailSection(
+      "SOCIAL MEDIA MANAGEMENT",
+      emailRow("Platforms", form.socialPlatforms)
+    );
+  }
+
+  return html;
+};
+
+const initialForm = (services = []) => ({
+  name: "",
+  email: "",
+  company: "",
+  services,
+  videos: 1,
+  format: "Short Form",
+  websiteType: "",
+  websitePages: "",
+  socialPlatforms: "",
+  details: "",
+  budget: "",
+});
+
 const Field = ({ label, children }) => (
   <label className="flex w-full flex-col gap-2">
     <span className="text-[18px] tracking-[-0.02em] text-white">{label}</span>
@@ -37,19 +101,7 @@ const Contact = () => {
   const initialServices = serviceOptions
     .filter(({ value }) => requestedPlan.toLowerCase().includes(value.toLowerCase()))
     .map(({ value }) => value);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    services: initialServices,
-    videos: 1,
-    format: "Short Form",
-    websiteType: "",
-    websitePages: "",
-    socialPlatforms: "",
-    details: "",
-    budget: "",
-  });
+  const [form, setForm] = useState(initialForm(initialServices));
 
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState("");
@@ -84,18 +136,13 @@ const Contact = () => {
     const templateParams = {
       name: form.name,
       email: form.email,
-      company: form.company,
+      company: form.company || "—",
       service: form.services.join(", "),
-      services: form.services.join(", "),
-      selected_services: form.services.join(", "),
-      plan: requestedPlan,
-      videos: form.videos,
-      format: form.format,
-      website_type: form.websiteType,
-      website_pages: form.websitePages,
-      social_platforms: form.socialPlatforms,
-      details: form.details,
-      budget: form.budget,
+      plan: requestedPlan || "—",
+      details: form.details || "—",
+      budget: form.budget || "—",
+      // HTML blocks: sirf selected services ke sections
+      service_sections: buildServiceSections(form),
     };
 
     try {
@@ -109,20 +156,7 @@ const Contact = () => {
       );
 
       setStatus("success");
-
-      setForm({
-        name: "",
-        email: "",
-        company: "",
-        services: [],
-        videos: 1,
-        format: "Short Form",
-        websiteType: "",
-        websitePages: "",
-        socialPlatforms: "",
-        details: "",
-        budget: "",
-      });
+      setForm(initialForm());
     } catch (error) {
       console.error("EmailJS Error:", error);
       setStatus("error");
